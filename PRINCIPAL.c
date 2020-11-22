@@ -50,7 +50,7 @@ void pularPrimeiraLinha(FILE *arq);
 int main()
 {
 	int anoCad, mesCad, diaCad, anoOb, mesOb, diaOb, idadePac;
-	char clasPac[20], munPac[20], rest[40], comoPul[3], comoCard[3], comoRen[3], comoDiab[3], comoTaba[3], comoObes[3], interPac[3];
+	char clasPac[20], munPac[20], rest[40], comoPul[20], comoCard[20], comoRen[20], comoDiab[20], comoTaba[20], comoObes[20], interPac[20];
 
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
@@ -80,9 +80,9 @@ int main()
 				printf("%d/%d/%d\n%d/%d/%d\n%s\n%s\n\"%d anos, %s\"\n", anoCad, mesCad, diaCad, anoOb, mesOb, diaOb, clasPac, munPac, idadePac, rest);
 				printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", comoPul, comoCard, comoRen, comoDiab, comoTaba, comoObes, interPac);
 			}
-			printf("\n --> %s\n", comoPul);
 		}
 		//lerEntrada();
+		//system("mkdir pasta");
 	}
 
 	fclose(arq); // fechar arquivo e limpar o que foi armazenado no buffer
