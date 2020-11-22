@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 
+// definicao de constantes
 #define FALSE 0
 #define TRUE 1
 
@@ -57,7 +58,7 @@ int main()
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
 	//arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
-	arq = fopen("./arquivoleitura.csv", "r");
+	arq = fopen("./readtest.csv", "r");
 
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
