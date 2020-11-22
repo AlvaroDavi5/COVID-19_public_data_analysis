@@ -41,6 +41,7 @@ typedef struct
 void lerEntrada();
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 void pularPrimeiraLinha(FILE *arq);
+int lerSIMouNAO(char string[]);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -135,4 +136,39 @@ void pularPrimeiraLinha(FILE *arq)
 	}
 
 	return;
+}
+
+int lerSIMouNAO(char string[])
+{
+	int i, verif = 0;
+
+	for (i = 0; i < 3; i++) // basta apenas ler os 3 primeiros caracteres
+	{
+		if (i == 0 && string[i] == 'S')
+		{
+			verif++;
+		}
+		else if (i == 1 && string[i] == 'i')
+		{
+			verif++;
+		}
+		else if (i == 2 && string[i] == 'm')
+		{
+			verif++;
+		}
+		else
+		{
+			verif = 0;
+			break;
+		}
+	}
+
+	if (verif == 3)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
