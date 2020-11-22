@@ -1,13 +1,13 @@
 
-O primeiro passo e ler o arquivo de entrada de dados contendo os casos de Covid-19 do Espirito Santo (covid19ES.csv) e armazena-lo em uma estrutura de dados.  
+O primeiro passo e ler o arquivo de entrada de dados contendo os casos de Covid-19 do Espirito Santo (covid19ES.csv)✓ e armazena-lo em uma estrutura de dados.  
 
 Construir uma função responsável por realizar a leitura do arquivo CSV, essa função deverá ser executada uma única vez para cada arquivo de teste! caso você carregue várias vezes por teste, seu código poderá demorar demais para rodar.✓  
 
 Utilizar uma ou mais struct para armazenar os dados carregados.  
 
-Para as entradas, serão lidos arqivos em um diretorio de entrada (ex: inputs/testN/item_N.txt).  
+Para as entradas, serão lidos arqivos em um diretorio de entrada (ex: inputs/testN.txt).  
 
-Para as saidas, serão lidos arqivos em um diretorio de entrada (ex: outputs/testN/item_N.txt).  
+Para as saidas, serão escritos arqivos em um diretorio de saida (ex: outputs/testN/item_N.txt).  
 
 ---------------------------------------------------------------------------------------------
 
