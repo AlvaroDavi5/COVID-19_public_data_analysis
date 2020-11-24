@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <math.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 // definicao de constantes
 #define TAMVETOR 210000
@@ -55,7 +60,6 @@ void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[]);
 void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 void pularPrimeiraLinha(FILE *arq);
-int verifConfirmado(char string[]);
 int lerSIMouNAO(char string[]);
 
 
@@ -131,8 +135,8 @@ void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[])
 	int i;
 	for (i = 0; i < TAMVETOR; i++)
 	{
-		printf("data cadastro = %d-%d-%d\n", vetorPaciente[i].DataCadastro.dia, vetorPaciente[i].DataCadastro.mes, vetorPaciente[i].DataCadastro.ano);
-		printf("data obito = %d-%d-%d\n", vetorPaciente[i].DataObito.dia, vetorPaciente[i].DataObito.mes, vetorPaciente[i].DataObito.ano);
+		printf("data cadastro = %02d/%02d/%04d\n", vetorPaciente[i].DataCadastro.dia, vetorPaciente[i].DataCadastro.mes, vetorPaciente[i].DataCadastro.ano);
+		printf("data obito = %02d/%02d/%04d\n", vetorPaciente[i].DataObito.dia, vetorPaciente[i].DataObito.mes, vetorPaciente[i].DataObito.ano);
 		printf("classificacao = %s\n", vetorPaciente[i].Classificacao);
 		printf("municipio = %s\n", vetorPaciente[i].Municipio);
 		printf("idade pessoa = %d\n", vetorPaciente[i].IdadeNaDataNotificacao);
@@ -157,12 +161,38 @@ void lerEntrada()
 
 	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
 	/*
-	
-	https://www.vivaolinux.com.br/topico/C-C++/CRIAR-PASTAS-EM-C
-	https://www.vivaolinux.com.br/dica/Como-criar-um-diretorio-em-CC
-	https://www.clubedohardware.com.br/topic/670093-criando-diret%C3%B3rios/
-	https://pt.stackoverflow.com/questions/312995/criar-um-arquivo-em-outro-diret%C3%B3rio
-	https://forum.scriptbrasil.com.br/topic/138965-como-criar-diret%C3%B3rio-em-c/
+
+	int created = mkdir("PASTA", 0777)
+
+	if (created == 0)
+	{
+		printf("Deu certo!\n");
+	}
+	else
+	{
+		printf("Deu ruim!\n");
+	}
+
+	-----------------------------------------
+
+	char comando[40];   
+
+    strcpy(comando,"mkdir c:\\");
+    strcat(comando, dir);
+
+    system(comando);
+
+	-----------------------------------------
+
+	int teste;
+
+	teste = mkdir(dir);
+	if (!teste)
+		printf("DIRETORIO CRIADO\n");
+	else
+	{
+		printf("DIRETORIO não CRIADO\n");
+	}
 
 	*/
 
@@ -174,6 +204,11 @@ void lerEntrada()
 	filtrarDatas(&top_anoD1, &top_mesD1, &top_diaD1, &top_anoD2, &top_mesD2, &top_diaD2);
 
 	scanf("%s\n", muni);
+	int tamStr = strlen(muni); // pegar tamanho da string
+	for (int k = 0; k < tamStr; k++)
+	{
+		muni[k] = toupper (muni[k]); // converter para mauscula cada letra do vetor de caracteres
+	}
 
 	filtrarDatas(&mortes_anoD1, &mortes_mesD1, &mortes_diaD1, &mortes_anoD2, &mortes_mesD2, &mortes_diaD2);
 }
@@ -187,53 +222,12 @@ void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, in
 
 void pularPrimeiraLinha(FILE *arq)
 {
-	int cont = 0;
-
 	while (fgetc(arq) != '\n')
 	{
-		cont++; // apenas para esquecer a primeira linha
+		// apenas para esquecer a primeira linha
 	}
 
 	return;
-}
-
-int verifConfirmado(char string[])
-{
-	int i, verif = 0;
-
-	for (i = 0; i < 4; i++) // basta apenas ler os 4 primeiros caracteres
-	{
-		if (i == 0 && string[i] == 'C')
-		{
-			verif++;
-		}
-		else if (i == 1 && string[i] == 'o')
-		{
-			verif++;
-		}
-		else if (i == 2 && string[i] == 'n')
-		{
-			verif++;
-		}
-		else if (i == 3 && string[i] == 'f')
-		{
-			verif++;
-		}
-		else
-		{
-			verif = 0;
-			break;
-		}
-	}
-
-	if (verif == 4)
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
 }
 
 int lerSIMouNAO(char string[])

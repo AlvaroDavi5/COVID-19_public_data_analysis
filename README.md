@@ -1,13 +1,6 @@
-
-O primeiro passo e ler o arquivo de entrada de dados contendo os casos de Covid-19 do Espirito Santo (covid19ES.csv)✓ e armazena-lo em uma estrutura de dados.  
-
-Construir uma função responsável por realizar a leitura do arquivo CSV, essa função deverá ser executada uma única vez para cada arquivo de teste! caso você carregue várias vezes por teste, seu código poderá demorar demais para rodar.✓  
-
-Utilizar uma ou mais struct para armazenar os dados carregados.  
-
 Para as entradas, serão lidos arqivos em um diretorio de entrada (ex: inputs/testN.txt).  
 
-Para as saidas, serão escritos arqivos em um diretorio de saida (ex: outputs/testN/item_N.txt).  
+Para as saidas, serão escritos arqivos em um diretorio de saida, cada item com seu arquivo proprio (ex: outputs/testN/item_N.txt).  
 
 ---------------------------------------------------------------------------------------------
 
@@ -23,13 +16,6 @@ string datas d1 e d2 (ex: 2020-07-10 2020-08-10)
 
 # Funcionalidade
 
-abrir arquivo .csv no modo apenas leitura [com funcao]✓  
-
-verificar se o arquivo esta vazio✓  
-ler arquivo .csv✓   
-		ignorar a primeira linha - linha dos nomes de cada dado - (ate o \n)✓  
-		começar a ler e registrar a partir da segunda linha✓  
-
 ler arquivo .txt como input  
 		ler diretorio do output  
 		ler N casos  
@@ -38,10 +24,6 @@ ler arquivo .txt como input
 		ler string  
 		ler d1 e d2  
 
-criar struct para pacientes✓  
-		salvar seus dados em atributos do struct  
-
-criar vetor de struct  
 
 criar struct para estatisticas  
 
@@ -63,7 +45,6 @@ registrar:
 
 ## contabilizar casos especificos [com funcoes]  
 
-		filtrar datas, lendo “2020-07-20” e interpretando como dia 20 de julho de 2020 [com funcao]  
 		listar, em ordem alfabetica, as cidades com mais de N casos de covid-19 [com funcao]  
 		determinar quantos casos foram registrados em um intervalo de datas, onde d1 < d2 sempre [com funcao]  
 
@@ -75,12 +56,9 @@ registrar:
 			de pessoas que morreram  
 			de pessoas internadas que morreram  
 
-		converter strings de entrada para maiusculo [com funcao]  
 		determinar media (3 casas decimais) e desvio padrao (3 casas decimais) da idade das pessoas que morreram e percentual (3 casas decimais) de pessoas que morreram e não possuíam nenhuma comorbidade entre d1 e d2 [cada um com uma funcao]  
 
 salvar arquivo .txt como output de cada item - de forma separada - na pasta dita pelo input  
-
-fechar arquivo .csv com funcao (ler apenas uma vez)✓  
 
 
 # Output
