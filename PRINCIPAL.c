@@ -4,6 +4,7 @@
 #include <math.h>
 
 // definicao de constantes
+#define TAMVETOR 210000
 #define FALSE 0
 #define TRUE 1
 
@@ -22,14 +23,14 @@ typedef struct
 	tData DataObito;
 	char Classificacao[20];
 	char Municipio[50];
-	tData IdadeNaDataNotificacao;
-	int ComorbidadePulmao;
-	int ComorbidadeCardio;
-	int ComorbidadeRenal;
-	int ComorbidadeDiabetes;
-	int ComorbidadeTabagismo;
-	int ComorbidadeObesidade;
-	int FicouInternado;
+	int IdadeNaDataNotificacao;
+	char ComorbidadePulmao[6];
+	char ComorbidadeCardio[6];
+	char ComorbidadeRenal[6];
+	char ComorbidadeDiabetes[6];
+	char ComorbidadeTabagismo[6];
+	char ComorbidadeObesidade[6];
+	char FicouInternado[20];
 } tDadosPaciente; // dados de cada linha/paciente
 
 typedef struct
@@ -50,6 +51,8 @@ typedef struct
 
 // prototipos de funcoes
 void lerEntrada();
+void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[]);
+void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 void pularPrimeiraLinha(FILE *arq);
 int verifConfirmado(char string[]);
@@ -62,10 +65,7 @@ int lerSIMouNAO(char string[]);
 // funcao principal
 int main()
 {
-	tDadosPaciente static paciente[210000]; // definido como static para evitar falha de segmentacao
-
-	int anoCad, mesCad, diaCad, anoOb, mesOb, diaOb, idadePac;
-	char clasPac[30], munPac[50], rest[40], comoPul[20], comoCard[20], comoRen[20], comoDiab[20], comoTaba[20], comoObes[20], interPac[20];
+	static tDadosPaciente vetorPaciente[TAMVETOR]; // definido como static para evitar falha de segmentacao
 
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
@@ -89,11 +89,9 @@ int main()
 			}
 			else
 			{
-				fscanf(arq, "%d-%d-%d,%d-%d-%d,%[^,],%[^,],\"%d anos, %[^\"]\",", &anoCad, &mesCad, &diaCad, &anoOb, &mesOb, &diaOb, clasPac, munPac, &idadePac, rest);
-				fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", comoPul, comoCard, comoRen, comoDiab, comoTaba, comoObes, interPac); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
-
-				printf("%d/%d/%d\n%d/%d/%d\n%s\n%s\n\"%d anos, %s\"\n", anoCad, mesCad, diaCad, anoOb, mesOb, diaOb, clasPac, munPac, idadePac, rest);
-				printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", comoPul, comoCard, comoRen, comoDiab, comoTaba, comoObes, interPac);
+				lerArquivoCSV(arq, vetorPaciente);
+				// para proximas funcionalidades
+				imprimeDadosColetados(arq, vetorPaciente);
 			}
 		}
 		//lerEntrada();
@@ -109,13 +107,52 @@ int main()
 
 
 // todas as funcoes
+void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[])
+{
+	int i;
+
+	for (i = 0; i < TAMVETOR; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
+	{
+		if (feof(arq)) // funcao usada para evitar que a funcao lerArquivoCVS continue registrando dados no vetor mesmo apos o fim do arquivo
+		{
+			break;
+		}
+		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
+		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
+		fscanf(arq, "%[^,],%[^,],", vetorPaciente[i].Classificacao, vetorPaciente[i].Municipio);
+		fscanf(arq, "\"%d %*[^\"]\",", &vetorPaciente[i].IdadeNaDataNotificacao); // criar vetor descartável ou usar %*[^\"] para descartar as informacoes alem da idade em anos
+		fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],", vetorPaciente[i].ComorbidadePulmao, vetorPaciente[i].ComorbidadeCardio, vetorPaciente[i].ComorbidadeRenal, vetorPaciente[i].ComorbidadeDiabetes, vetorPaciente[i].ComorbidadeTabagismo, vetorPaciente[i].ComorbidadeObesidade);
+		fscanf(arq, "%[^\n]", vetorPaciente[i].FicouInternado); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
+	}
+}
+
+void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[])
+{
+	int i;
+	for (i = 0; i < TAMVETOR; i++)
+	{
+		printf("data cadastro = %d-%d-%d\n", vetorPaciente[i].DataCadastro.dia, vetorPaciente[i].DataCadastro.mes, vetorPaciente[i].DataCadastro.ano);
+		printf("data obito = %d-%d-%d\n", vetorPaciente[i].DataObito.dia, vetorPaciente[i].DataObito.mes, vetorPaciente[i].DataObito.ano);
+		printf("classificacao = %s\n", vetorPaciente[i].Classificacao);
+		printf("municipio = %s\n", vetorPaciente[i].Municipio);
+		printf("idade pessoa = %d\n", vetorPaciente[i].IdadeNaDataNotificacao);
+		printf("comorbidadePulmao = %s\n", vetorPaciente[i].ComorbidadePulmao);
+		printf("comorbidadeCardio = %s\n", vetorPaciente[i].ComorbidadeCardio);
+		printf("comorbidadeRenal = %s\n", vetorPaciente[i].ComorbidadeRenal);
+		printf("comorbidadeDiabetes = %s\n", vetorPaciente[i].ComorbidadeDiabetes);
+		printf("comorbidadeTabagismo = %s\n", vetorPaciente[i].ComorbidadeTabagismo);
+		printf("comorbidadeObesidade = %s\n", vetorPaciente[i].ComorbidadeObesidade);
+		printf("ficou internado = %s\n\n", vetorPaciente[i].FicouInternado);
+	}
+}
+
 void lerEntrada()
 {
-	char dir[50], comando[50];
+	char dir[40];
 	int Ncasos;
 	int casos_anoD1, casos_mesD1, casos_diaD1, casos_anoD2, casos_mesD2, casos_diaD2;
 	int topNcasos, top_anoD1, top_mesD1, top_diaD1, top_anoD2, top_mesD2, top_diaD2;
-	char muni[30];
+	char muni[50];
 	int mortes_anoD1, mortes_mesD1, mortes_diaD1, mortes_anoD2, mortes_mesD2, mortes_diaD2;
 
 	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
