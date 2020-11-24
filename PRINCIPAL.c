@@ -7,20 +7,21 @@
 #define FALSE 0
 #define TRUE 1
 
+
 // definicao de tipos complexos
 typedef struct
 {
-	int dia;
-	int mes;
 	int ano;
-} tData;
+	int mes;
+	int dia;
+} tData; // formato ano-mes-dia para facilitar armazenamento das datas
 
 typedef struct
 {
 	tData DataCadastro;
 	tData DataObito;
 	char Classificacao[20];
-	char Municipio[30];
+	char Municipio[50];
 	tData IdadeNaDataNotificacao;
 	int ComorbidadePulmao;
 	int ComorbidadeCardio;
@@ -29,13 +30,22 @@ typedef struct
 	int ComorbidadeTabagismo;
 	int ComorbidadeObesidade;
 	int FicouInternado;
-} tDadosPaciente;
+} tDadosPaciente; // dados de cada linha/paciente
 
 typedef struct
 {
-	int CasosConfEntreDatas;
-	//
-} tEstatisticas;
+	char nomeMun[50];
+	int casosConfMun;
+} tMunicipios; // estrutura com nome do municipio e numero de casos
+
+typedef struct
+{
+	int casosConfEntreDatas;
+	tMunicipios muniTopNEntreDatas;
+	char muniEstats[50];
+	float mediaEntreDatas;
+	float desvpadraoEntreDatas;
+} tEstatisticas; // estatisticas em geral
 
 
 // prototipos de funcoes
@@ -52,8 +62,10 @@ int lerSIMouNAO(char string[]);
 // funcao principal
 int main()
 {
+	tDadosPaciente static paciente[210000]; // definido como static para evitar falha de segmentacao
+
 	int anoCad, mesCad, diaCad, anoOb, mesOb, diaOb, idadePac;
-	char clasPac[20], munPac[20], rest[40], comoPul[20], comoCard[20], comoRen[20], comoDiab[20], comoTaba[20], comoObes[20], interPac[20];
+	char clasPac[30], munPac[50], rest[40], comoPul[20], comoCard[20], comoRen[20], comoDiab[20], comoTaba[20], comoObes[20], interPac[20];
 
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
@@ -63,7 +75,7 @@ int main()
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
 		printf("Erro na abertura: arquivo nao encontrado!\n");
-		exit(1); // força o encerramento do programa (POR CONVENÇÃO: retorna 0 caso tudo ocorra bem, retorna um número diferente de 0 caso ocorra um erro)
+		exit(1); // forca o encerramento do programa (POR CONVENÇÃO: retorna 0 caso tudo ocorra bem, retorna um número diferente de 0 caso ocorra um erro)
 	}
 	else
 	{
@@ -85,7 +97,6 @@ int main()
 			}
 		}
 		//lerEntrada();
-		//system("mkdir pasta");
 	}
 
 	fclose(arq); // fechar arquivo e limpar o que foi armazenado no buffer
@@ -100,16 +111,25 @@ int main()
 // todas as funcoes
 void lerEntrada()
 {
-	char dir[50];
+	char dir[50], comando[50];
 	int Ncasos;
 	int casos_anoD1, casos_mesD1, casos_diaD1, casos_anoD2, casos_mesD2, casos_diaD2;
 	int topNcasos, top_anoD1, top_mesD1, top_diaD1, top_anoD2, top_mesD2, top_diaD2;
 	char muni[30];
 	int mortes_anoD1, mortes_mesD1, mortes_diaD1, mortes_anoD2, mortes_mesD2, mortes_diaD2;
 
-	scanf("%s\n", dir);
+	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
+	/*
+	
+	https://www.vivaolinux.com.br/topico/C-C++/CRIAR-PASTAS-EM-C
+	https://www.vivaolinux.com.br/dica/Como-criar-um-diretorio-em-CC
+	https://www.clubedohardware.com.br/topic/670093-criando-diret%C3%B3rios/
+	https://pt.stackoverflow.com/questions/312995/criar-um-arquivo-em-outro-diret%C3%B3rio
+	https://forum.scriptbrasil.com.br/topic/138965-como-criar-diret%C3%B3rio-em-c/
 
-	scanf("%d\n", &Ncasos);
+	*/
+
+	scanf("%d\n", &Ncasos); // ler numero de casos confirmados [para listar em ordem alfabetica as cidades com mais de tais casos]
 
 	filtrarDatas(&casos_anoD1, &casos_mesD1, &casos_diaD1, &casos_anoD2, &casos_mesD2, &casos_diaD2);
 
@@ -123,7 +143,7 @@ void lerEntrada()
 
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2)
 {
-	scanf("%d-%d-%d %d-%d-%d", anoD1, mesD1, diaD1, anoD2, mesD2, diaD2);
+	scanf("%d-%d-%d %d-%d-%d", anoD1, mesD1, diaD1, anoD2, mesD2, diaD2); // ler ano-mes-dia das datas 1 e 2
 
 	return;
 }

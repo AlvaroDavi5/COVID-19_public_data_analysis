@@ -4,3 +4,321 @@ DataCadastro,DataObito,Classificacao,Municipio,IdadeNaDataNotificacao,Comorbidad
 2020-07-20,0000-00-00,Confirmados,NOVA VENECIA,"47 anos, 7 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
 2020-07-20,0000-00-00,Confirmados,IBIRACU,"28 anos, 4 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não
 2020-07-20,0000-00-00,Descartados,LINHARES,"40 anos, 7 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"42 anos, 0 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"37 anos, 10 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,LINHARES,"33 anos, 7 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,VITORIA,"29 anos, 10 meses, 3 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,ARACRUZ,"46 anos, 10 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,BARRA DE SAO FRANCISCO,"24 anos, 4 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"53 anos, 4 meses, 15 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"49 anos, 0 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SAO GABRIEL DA PALHA,"46 anos, 7 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,ITAPEMIRIM,"26 anos, 10 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,RIO BANANAL,"28 anos, 2 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,ARACRUZ,"38 anos, 11 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,MARECHAL FLORIANO,"33 anos, 1 meses, 30 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,RIO BANANAL,"64 anos, 9 meses, 15 dias",Sim,Sim,Não,Sim,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CONCEICAO DO CASTELO,"33 anos, 6 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,JAGUARE,"20 anos, 9 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"27 anos, 7 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,CACHOEIRO DE ITAPEMIRIM,"2 anos, 2 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,BOA ESPERANCA,"23 anos, 5 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,NOVA VENECIA,"55 anos, 5 meses, 23 dias",Não,Não,Não,Sim,Não,Não,Sim
+2020-07-20,0000-00-00,Descartados,NOVA VENECIA,"27 anos, 9 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,IBITIRAMA,"24 anos, 4 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"66 anos, 0 meses, 19 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"32 anos, 0 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SAO MATEUS,"29 anos, 10 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SAO MATEUS,"6 anos, 3 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VITORIA,"30 anos, 11 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,MIMOSO DO SUL,"49 anos, 7 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SERRA,"47 anos, 3 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SAO MATEUS,"30 anos, 10 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"27 anos, 2 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"54 anos, 9 meses, 29 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,ALTO RIO NOVO,"35 anos, 7 meses, 8 dias",Não,Não,Não,Não,Não,Não,Ignorado
+2020-07-20,0000-00-00,Suspeito,VITORIA,"52 anos, 9 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,IBIRACU,"33 anos, 7 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"69 anos, 7 meses, 25 dias",Não,Não,Não,Não,Sim,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VENDA NOVA DO IMIGRANTE,"63 anos, 6 meses, 7 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"38 anos, 8 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SERRA,"39 anos, 1 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"33 anos, 8 meses, 17 dias",Sim,Não,Não,Não,Não,Sim,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"79 anos, 5 meses, 24 dias",Não,Não,Não,Sim,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SERRA,"43 anos, 2 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,GUARAPARI,"35 anos, 7 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,BOA ESPERANCA,"42 anos, 6 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,IBIRACU,"34 anos, 9 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"20 anos, 3 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,BOM JESUS DO NORTE,"54 anos, 0 meses, 9 dias",Não,Não,Não,Não,Sim,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"9 anos, 4 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SANTA MARIA DE JETIBA,"41 anos, 7 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,COLATINA,"38 anos, 6 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,NOVA VENECIA,"63 anos, 2 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,JOAO NEIVA,"14 anos, 8 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SAO MATEUS,"39 anos, 2 meses, 4 dias",Sim,Sim,Não,Não,-,-,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"42 anos, 11 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,MARILANDIA,"10 anos, 5 meses, 29 dias",Sim,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,GUARAPARI,"36 anos, 0 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SANTA TERESA,"34 anos, 0 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,CONCEICAO DO CASTELO,"39 anos, 9 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,GUARAPARI,"18 anos, 11 meses, 10 dias",Não,Não,Não,Não,Sim,Não,Não
+2020-07-20,0000-00-00,Suspeito,BARRA DE SAO FRANCISCO,"23 anos, 3 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,GUARAPARI,"56 anos, 4 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,LINHARES,"21 anos, 10 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SOORETAMA,"38 anos, 1 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,NOVA VENECIA,"22 anos, 1 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"60 anos, 0 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,AFONSO CLAUDIO,"48 anos, 1 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"60 anos, 2 meses, 23 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"57 anos, 3 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-23,0000-00-00,Suspeito,LINHARES,"17 anos, 8 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-23,0000-00-00,Confirmados,SERRA,"40 anos, 3 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,VILA VELHA,"45 anos, 1 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,CASTELO,"53 anos, 8 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Suspeito,VILA VELHA,"59 anos, 0 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CASTELO,"44 anos, 11 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,CASTELO,"37 anos, 6 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,CASTELO,"65 anos, 5 meses, 2 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,CASTELO,"24 anos, 4 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,CASTELO,"39 anos, 10 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Suspeito,CASTELO,"22 anos, 2 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CASTELO,"44 anos, 9 meses, 27 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Suspeito,CASTELO,"53 anos, 0 meses, 26 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CASTELO,"15 anos, 8 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CASTELO,"22 anos, 4 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,CASTELO,"42 anos, 0 meses, 20 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,LINHARES,"31 anos, 2 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,LINHARES,"52 anos, 9 meses, 24 dias",Não,Não,Não,Sim,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,CASTELO,"70 anos, 2 meses, 13 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,LINHARES,"23 anos, 5 meses, 19 dias",Não,Não,Não,Não,Não,Sim,Não
+2020-07-22,0000-00-00,Descartados,CASTELO,"54 anos, 0 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-05,0000-00-00,Confirmados,LINHARES,"29 anos, 10 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"4 anos, 7 meses, 10 dias",Sim,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Descartados,PINHEIROS,"34 anos, 3 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"2 anos, 6 meses, 9 dias",Sim,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"20 anos, 9 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Confirmados,BREJETUBA,"30 anos, 2 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Confirmados,FUNDAO,"31 anos, 7 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Descartados,BREJETUBA,"35 anos, 11 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Confirmados,MARATAIZES,"51 anos, 5 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,VIANA,"23 anos, 8 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Suspeito,SERRA,"12 anos, 4 meses, 5 dias",Sim,Não,Não,Não,Não,Sim,Não Informado
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"32 anos, 0 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Confirmados,LINHARES,"73 anos, 10 meses, 5 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Confirmados,BREJETUBA,"54 anos, 3 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"34 anos, 1 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,VILA VELHA,"40 anos, 2 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-06,0000-00-00,Descartados,SERRA,"46 anos, 4 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-06,0000-00-00,Descartados,SERRA,"23 anos, 3 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-06,0000-00-00,Descartados,SERRA,"40 anos, 10 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-06,0000-00-00,Descartados,VITORIA,"55 anos, 8 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-06,0000-00-00,Descartados,VITORIA,"42 anos, 9 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-06,0000-00-00,Descartados,VILA VELHA,"27 anos, 4 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-06,0000-00-00,Descartados,SERRA,"38 anos, 6 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-06,0000-00-00,Descartados,SERRA,"28 anos, 0 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-06,0000-00-00,Descartados,SERRA,"51 anos, 11 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"40 anos, 8 meses, 26 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,SAO ROQUE DO CANAA,"69 anos, 11 meses, 25 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"55 anos, 1 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,2020-08-17,Confirmados,IBIRACU,"77 anos, 10 meses, 18 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CACHOEIRO DE ITAPEMIRIM,"70 anos, 5 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,FUNDAO,"37 anos, 7 meses, 29 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,COLATINA,"53 anos, 0 meses, 22 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,SERRA,"42 anos, 7 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-12,0000-00-00,Confirmados,SERRA,"31 anos, 6 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-12,0000-00-00,Descartados,IBIRACU,"38 anos, 2 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-12,0000-00-00,Confirmados,VITORIA,"31 anos, 8 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-12,0000-00-00,Descartados,SERRA,"36 anos, 1 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-12,0000-00-00,Descartados,SERRA,"50 anos, 7 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-24,0000-00-00,Descartados,VIANA,"26 anos, 8 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-24,0000-00-00,Descartados,SERRA,"20 anos, 1 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-24,0000-00-00,Descartados,JOAO NEIVA,"52 anos, 6 meses, 2 dias",Não,Sim,Não,Não,Não,Sim,Não
+2020-07-24,0000-00-00,Descartados,BAIXO GUANDU,"24 anos, 7 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-24,0000-00-00,Descartados,BAIXO GUANDU,"47 anos, 10 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-24,0000-00-00,Descartados,BAIXO GUANDU,"13 anos, 3 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-06,0000-00-00,Descartados,COLATINA,"21 anos, 0 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-06,0000-00-00,Suspeito,LINHARES,"20 anos, 0 meses, 6 dias",Sim,Não,Não,Não,Não,Não,Não Informado
+2020-07-29,0000-00-00,Descartados,LINHARES,"31 anos, 3 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"49 anos, 10 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,JOAO NEIVA,"16 anos, 11 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,ITAGUACU,"32 anos, 9 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,VARGEM ALTA,"25 anos, 2 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,FUNDAO,"53 anos, 4 meses, 31 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,FUNDAO,"30 anos, 9 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"10 anos, 10 meses, 30 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,COLATINA,"25 anos, 0 meses, 20 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,IBIRACU,"32 anos, 3 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"44 anos, 11 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CASTELO,"15 anos, 5 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,COLATINA,"20 anos, 1 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"28 anos, 2 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,FUNDAO,"49 anos, 1 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,IBIRACU,"35 anos, 1 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"2 anos, 11 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Descartados,COLATINA,"33 anos, 2 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CASTELO,"36 anos, 7 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,RIO NOVO DO SUL,"50 anos, 9 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,COLATINA,"53 anos, 9 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,ITAGUACU,"57 anos, 5 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"27 anos, 0 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Confirmados,COLATINA,"39 anos, 0 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,SERRA,"43 anos, 4 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,CACHOEIRO DE ITAPEMIRIM,"55 anos, 7 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não
+2020-09-19,0000-00-00,Descartados,SERRA,"30 anos, 3 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-02,0000-00-00,Suspeito,SERRA,"27 anos, 0 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-09-02,0000-00-00,Suspeito,SERRA,"42 anos, 2 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-30,0000-00-00,Descartados,CONCEICAO DA BARRA,"26 anos, 6 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-30,0000-00-00,Suspeito,VITORIA,"31 anos, 2 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,GUARAPARI,"33 anos, 2 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Descartados,VENDA NOVA DO IMIGRANTE,"34 anos, 3 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Confirmados,LINHARES,"52 anos, 4 meses, 31 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Confirmados,BAIXO GUANDU,"21 anos, 1 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Confirmados,BAIXO GUANDU,"24 anos, 3 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Descartados,LINHARES,"25 anos, 3 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-18,0000-00-00,Confirmados,CONCEICAO DA BARRA,"40 anos, 7 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-31,0000-00-00,Descartados,ARACRUZ,"18 anos, 7 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-24,0000-00-00,Descartados,ITAGUACU,"46 anos, 0 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-04,0000-00-00,Suspeito,SERRA,"29 anos, 7 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-04,0000-00-00,Confirmados,VITORIA,"52 anos, 10 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-22,0000-00-00,Suspeito,VITORIA,"47 anos, 1 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Descartados,CONCEICAO DA BARRA,"82 anos, 3 meses, 8 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-22,0000-00-00,Confirmados,ATILIO VIVACQUA,"38 anos, 7 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-26,0000-00-00,Confirmados,CONCEICAO DA BARRA,"25 anos, 4 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-03,0000-00-00,Suspeito,SAO GABRIEL DA PALHA,"14 anos, 3 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-03,0000-00-00,Suspeito,SAO GABRIEL DA PALHA,"13 anos, 3 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-23,0000-00-00,Descartados,VILA VALERIO,"16 anos, 8 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-05,0000-00-00,Suspeito,SERRA,"52 anos, 11 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Descartados,PINHEIROS,"19 anos, 9 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-21,0000-00-00,Suspeito,SAO MATEUS,"21 anos, 0 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-21,0000-00-00,Descartados,PINHEIROS,"57 anos, 4 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,VITORIA,"38 anos, 5 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"44 anos, 1 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,CARIACICA,"20 anos, 8 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,COLATINA,"48 anos, 3 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,GUARAPARI,"36 anos, 0 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"55 anos, 11 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"42 anos, 4 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SERRA,"29 anos, 2 meses, 10 dias",Não,Não,Não,Não,Não,Sim,Não
+2020-07-20,0000-00-00,Confirmados,LINHARES,"38 anos, 11 meses, 14 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"35 anos, 6 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VENDA NOVA DO IMIGRANTE,"43 anos, 0 meses, 6 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SAO GABRIEL DA PALHA,"35 anos, 9 meses, 11 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SAO MATEUS,"47 anos, 10 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,2020-07-27,Confirmados,VILA VELHA,"89 anos, 7 meses, 20 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,MIMOSO DO SUL,"44 anos, 4 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,ARACRUZ,"43 anos, 0 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"34 anos, 1 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"50 anos, 10 meses, 5 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"57 anos, 11 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,GUARAPARI,"5 anos, 8 meses, 5 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VITORIA,"46 anos, 1 meses, 21 dias",Não,Não,Não,Não,Não,Não,Sim
+2020-07-20,0000-00-00,Suspeito,VITORIA,"37 anos, 11 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"23 anos, 4 meses, 6 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"53 anos, 9 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"82 anos, 9 meses, 5 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"4 anos, 2 meses, 6 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,AFONSO CLAUDIO,"53 anos, 5 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SERRA,"66 anos, 11 meses, 15 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"68 anos, 9 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,LINHARES,"62 anos, 9 meses, 3 dias",Sim,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"87 anos, 8 meses, 15 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,LINHARES,"47 anos, 7 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VIANA,"65 anos, 10 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SAO GABRIEL DA PALHA,"30 anos, 6 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,CARIACICA,"43 anos, 4 meses, 18 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"39 anos, 2 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,MARECHAL FLORIANO,"53 anos, 1 meses, 21 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SANTA MARIA DE JETIBA,"9 anos, 6 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,LINHARES,"13 anos, 0 meses, 31 dias",Sim,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SAO MATEUS,"44 anos, 6 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SAO MATEUS,"20 anos, 6 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CASTELO,"46 anos, 3 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"29 anos, 9 meses, 26 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SAO GABRIEL DA PALHA,"57 anos, 5 meses, 4 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SOORETAMA,"27 anos, 2 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"76 anos, 10 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SERRA,"21 anos, 11 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"63 anos, 1 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"80 anos, 1 meses, 8 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,MARECHAL FLORIANO,"44 anos, 3 meses, 27 dias",Não,Não,Não,Não,Sim,Não,Não
+2020-07-20,0000-00-00,Confirmados,ALEGRE,"41 anos, 1 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,LINHARES,"27 anos, 6 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,2020-07-15,Confirmados,CARIACICA,"82 anos, 3 meses, 16 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,CARIACICA,"24 anos, 0 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"45 anos, 9 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"76 anos, 3 meses, 15 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SERRA,"50 anos, 7 meses, 22 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"7 anos, 3 meses, 18 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"42 anos, 6 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VARGEM ALTA,"80 anos, 0 meses, 5 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,LINHARES,"72 anos, 5 meses, 31 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,LINHARES,"27 anos, 7 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,VILA VELHA,"29 anos, 0 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"33 anos, 8 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"85 anos, 4 meses, 31 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"38 anos, 5 meses, 16 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"32 anos, 3 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,VITORIA,"38 anos, 8 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,IUNA,"32 anos, 7 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,ITAPEMIRIM,"36 anos, 9 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SERRA,"52 anos, 1 meses, 11 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,PANCAS,"38 anos, 6 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"21 anos, 8 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,LINHARES,"37 anos, 6 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,PANCAS,"33 anos, 10 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,GUARAPARI,"25 anos, 7 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VENDA NOVA DO IMIGRANTE,"42 anos, 11 meses, 8 dias",Não,Sim,Não,Não,Não,Sim,Não
+2020-07-20,0000-00-00,Descartados,COLATINA,"2 anos, 10 meses, 23 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,DOMINGOS MARTINS,"39 anos, 11 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SAO GABRIEL DA PALHA,"22 anos, 2 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"64 anos, 7 meses, 15 dias",Não,Sim,Não,Sim,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SAO JOSE DO CALCADO,"48 anos, 2 meses, 31 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,SAO MATEUS,"26 anos, 9 meses, 15 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,ALFREDO CHAVES,"35 anos, 0 meses, 9 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,LINHARES,"45 anos, 1 meses, 13 dias",Não,Sim,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,SERRA,"44 anos, 1 meses, 30 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,LINHARES,"38 anos, 10 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,SERRA,"78 anos, 3 meses, 26 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,SAO MATEUS,"61 anos, 6 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,GUACUI,"32 anos, 11 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"33 anos, 10 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,2020-07-30,Descartados,VILA VELHA,"95 anos, 5 meses, 29 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"49 anos, 2 meses, 17 dias",Não,Não,Não,Não,Sim,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,LINHARES,"25 anos, 3 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"44 anos, 10 meses, 4 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,LINHARES,"29 anos, 7 meses, 25 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,CARIACICA,"43 anos, 6 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Descartados,SANTA LEOPOLDINA,"25 anos, 7 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"92 anos, 0 meses, 14 dias",Não,Sim,Não,Não,Não,Sim,Não
+2020-07-20,0000-00-00,Confirmados,SERRA,"31 anos, 8 meses, 31 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"35 anos, 6 meses, 12 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"67 anos, 1 meses, 2 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,ARACRUZ,"26 anos, 3 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CASTELO,"39 anos, 5 meses, 24 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,ARACRUZ,"61 anos, 8 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,LINHARES,"17 anos, 0 meses, 28 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,LINHARES,"4 anos, 10 meses, 5 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Suspeito,VILA VELHA,"50 anos, 0 meses, 9 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SAO MATEUS,"44 anos, 10 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SAO MATEUS,"40 anos, 11 meses, 14 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,SERRA,"23 anos, 9 meses, 13 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"68 anos, 2 meses, 29 dias",Não,Sim,Não,Sim,Não,Não,Não Informado
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"26 anos, 1 meses, 19 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Suspeito,BREJETUBA,"24 anos, 1 meses, 17 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,ALFREDO CHAVES,"46 anos, 10 meses, 5 dias",Não,Sim,Não,Não,Sim,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VILA VELHA,"60 anos, 0 meses, 11 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,CARIACICA,"50 anos, 6 meses, 24 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-20,0000-00-00,Descartados,VITORIA,"9 anos, 5 meses, 11 dias",Sim,Não,Não,Não,Não,Não,Não
+2020-07-20,0000-00-00,Confirmados,VILA VELHA,"64 anos, 1 meses, 7 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-24,0000-00-00,Confirmados,ARACRUZ,"71 anos, 4 meses, 31 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-24,0000-00-00,Confirmados,ARACRUZ,"42 anos, 6 meses, 10 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-04,0000-00-00,Suspeito,SERRA,"27 anos, 7 meses, 20 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-04,0000-00-00,Confirmados,VILA VELHA,"44 anos, 9 meses, 8 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-08-04,0000-00-00,Descartados,VIANA,"15 anos, 7 meses, 1 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-04,0000-00-00,Confirmados,VIANA,"39 anos, 3 meses, 2 dias",Não,Não,Não,Não,Não,Não,Não
+2020-07-24,0000-00-00,Suspeito,VILA VELHA,"54 anos, 4 meses, 28 dias",Não,Sim,Não,Não,Não,Não,Não
+2020-09-02,0000-00-00,Descartados,ITAGUACU,"34 anos, 8 meses, 27 dias",Não,Não,Não,Não,Não,Não,Não Informado
+2020-07-29,0000-00-00,Confirmados,VILA VELHA,"36 anos, 8 meses, 21 dias",Não,Não,Não,Não,Não,Não,Não
+2020-08-10,0000-00-00,Descartados,GUARAPARI,"30 anos, 10 meses, 28 dias",-,-,-,-,-,-,Não Informado
+2020-07-23,0000-00-00,Confirmados,MARATAIZES,"55 anos, 6 meses, 3 dias",Não,Não,Não,Não,Não,Não,Não
