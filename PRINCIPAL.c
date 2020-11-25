@@ -42,7 +42,7 @@ typedef struct
 {
 	char nomeMun[50];
 	int casosConfMun;
-} tMunicipios; // estrutura com nome do municipio e numero de casos
+} tMunicipios; // estrutura com nome do municipio e numero de casos [para contabilizar casos por municipios]
 
 typedef struct
 {
@@ -61,6 +61,8 @@ void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[]); // para s
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 void pularPrimeiraLinha(FILE *arq);
 int lerSIMouNAO(char string[]);
+int quantidadeDiasMes(int mes, int ano);
+int ehBissexto(int ano);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -119,7 +121,7 @@ void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[])
 	{
 		if (feof(arq)) // funcao usada para evitar que a funcao lerArquivoCVS continue registrando dados no vetor mesmo apos o fim do arquivo
 		{
-			break;
+			break; // netnar com whlie not feof ou while not eof
 		}
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
@@ -263,4 +265,36 @@ int lerSIMouNAO(char string[])
 	{
 		return FALSE;
 	}
+}
+
+int quantidadeDiasMes(int mes, int ano)
+{
+	int diasMes = 0;
+
+	if (mes == 2)
+	{
+		if (ehBissexto(ano))
+		{
+			diasMes = 29;
+		}
+		else
+		{
+			diasMes = 28;
+		}
+	}
+	else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
+	{
+		diasMes = 30;
+	}
+	else
+	{
+		diasMes = 31;
+	}
+
+	return diasMes;
+}
+
+int ehBissexto(int ano)
+{
+	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
 }

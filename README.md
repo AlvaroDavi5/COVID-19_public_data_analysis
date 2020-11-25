@@ -27,21 +27,7 @@ ler arquivo .txt como input
 
 criar struct para estatisticas  
 
-construir base de dados com dados coletados  
-
-registrar:  
-		DataCadastro (ex: 2020-07-20)  
-		DataObito (ex: 0000-00-00)  
-		Classificacao (ex: Suspeito)  
-		Municipio (ex: SAO MATEUS)  
-		IdadeNaDataNotificacao (ex: "27 anos, 5 meses, 20 dias")  
-		ComorbidadePulmao (ex: Não)  
-		ComorbidadeCardio (ex: Não)  
-		ComorbidadeRenal (ex: Não)  
-		ComorbidadeDiabetes (ex: Não)  
-		ComorbidadeTabagismo (ex: Não)  
-		ComorbidadeObesidade (ex: Não)  
-		FicouInternado (ex: Não Informado)  
+limitar tamanho do vetor e quantidade de dados coletados  
 
 ## contabilizar casos especificos [com funcoes]  
 
