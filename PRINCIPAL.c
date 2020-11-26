@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 
-// definicao de constantes
+// definicao de constantes globais
 #define TAMVETOR 202362
 #define FALSE 0
 #define TRUE 1
@@ -26,16 +26,16 @@ typedef struct
 {
 	tData DataCadastro;
 	tData DataObito;
-	char Classificacao[20];
+	char Classificacao[15];
 	char Municipio[35];
 	int IdadeNaDataNotificacao;
-	char ComorbidadePulmao[6];
-	char ComorbidadeCardio[6];
-	char ComorbidadeRenal[6];
-	char ComorbidadeDiabetes[6];
-	char ComorbidadeTabagismo[6];
-	char ComorbidadeObesidade[6];
-	char FicouInternado[20];
+	char ComorbidadePulmao[5];
+	char ComorbidadeCardio[5];
+	char ComorbidadeRenal[5];
+	char ComorbidadeDiabetes[5];
+	char ComorbidadeTabagismo[5];
+	char ComorbidadeObesidade[5];
+	char FicouInternado[15];
 } tDadosPaciente; // dados de cada linha/paciente
 
 typedef struct
@@ -55,7 +55,7 @@ typedef struct
 
 
 
-// matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
+// variaveis de escopo global
 char matrizMunicipios [78][35] =
 {
 	"AFONSO CLAUDIO", "AGUA DOCE DO NORTE", "AGUIA BRANCA", "ALEGRE", "ALFREDO CHAVES", "ALTO RIO NOVO", "ANCHIETA", "APIACA",
@@ -64,10 +64,14 @@ char matrizMunicipios [78][35] =
 	"DOMINGOS MARTINS", "DORES DO RIO PRETO", "ECOPORANGA", "FUNDAO", "GOVERNADOR LINDENBERG", "GUACUI", "GUARAPARI", "IBATIBA", "IBIRACU",
 	"IBITIRAMA", "ICONHA", "IRUPI", "ITAGUACU", "ITAPEMIRIM", "ITARANA", "IUNA", "JAGUARE", "JERONIMO MONTEIRO", "JOAO NEIVA", "LARANJA DA TERRA",
 	"LINHARES", "MANTENOPOLIS", "MARATAIZES", "MARECHAL FLORIANO", "MARILANDIA", "MIMOSO DO SUL", "MONTANHA", "MUCURICI", "MUNIZ FREIRE", "MUQUI",
-	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDIN",
+	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PIUMA", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDIN",
 	"SANTA MARIA DE JETIBA", "SANTA TERESA", "SAO DOMINGOS DO NORTE", "SAO GABRIEL DA PALHA", "SAO JOSE DO CALCADO", "SAO MATEUS", "SAO ROQUE DO CANAA",
 	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
-};
+}; // matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
+
+tMunicipios vetorMunicipios[78]; // vetor de struct para contabilizar casos de municipios
+
+tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, definido como global para evitar falha de segmentacao
 
 
 
@@ -77,11 +81,16 @@ void lerEntrada();
 void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[]);
 void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
-void pularPrimeiraLinha(FILE *arq);
-int lerSIMouNAO(char string[]);
-int quantidadeDiasMes(int mes, int ano);
+int lerSIMouNAO(char string[]); // talvez possa ser removida
+void cidadesMaisNCasosOrdemAlfab(int Ncasos); // para item3
+int totalDeCasosMun(char muni[]);
+int contarCasosEntreD1eD2(char muni[], tData data1, tData data2); // para item4
+int datasCoincidem(tData data1, tData data2);
+tData dataSeguinte(tData data1);
+int quantidadeDiasMes(int mes, int ano, char muni[]);
 int ehBissexto(int ano);
 double calcularPercentual(int num, int total);
+void pularPrimeiraLinha(FILE *arq);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -94,8 +103,7 @@ int main()
 
 	arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
 
-	int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo
-	static tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor
+	int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo [deve ser usada apenas quando se for ler arquivos diferentes]
 
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
@@ -105,9 +113,11 @@ int main()
 
 	pularPrimeiraLinha(arq); // ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha
 	lerArquivoCSV(tamVetor, arq, vetorPaciente);
-	// para proximas funcionalidades
-	imprimeDadosColetados(tamVetor, vetorPaciente);
+	//imprimeDadosColetados(tamVetor, vetorPaciente);
 	//lerEntrada();
+	//listarCidadesTopNCasosEntreD1eD2();
+	//determinarPercentuais();
+	//MeDPIdades_percentMortesSemComorb_entreD1eD2();
 
 	fclose(arq); // fechar arquivo e limpar o que foi armazenado no buffer
 
@@ -137,7 +147,7 @@ int contadorDeLinhas(FILE *arq)
 
 	rewind(arq); // reinicia o apontador doa posicao de leitura do arquivo
 
-	return numLinhas - 2;
+	return numLinhas - 2; // removidas primeira e ultima linhas
 }
 
 void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
@@ -149,7 +159,7 @@ void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
 		fscanf(arq, "%[^,],%[^,],", vetorPaciente[i].Classificacao, vetorPaciente[i].Municipio);
-		fscanf(arq, "\"%d %*[^\"]\",", &vetorPaciente[i].IdadeNaDataNotificacao); // criar vetor descartável ou usar %*[^\"] para descartar as informacoes alem da idade em anos
+		fscanf(arq, "%*c%d %*[^\"]%*c,", &vetorPaciente[i].IdadeNaDataNotificacao); // usado operador %*c para descartar as informacoes alem da idade em anos
 		fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],", vetorPaciente[i].ComorbidadePulmao, vetorPaciente[i].ComorbidadeCardio, vetorPaciente[i].ComorbidadeRenal, vetorPaciente[i].ComorbidadeDiabetes, vetorPaciente[i].ComorbidadeTabagismo, vetorPaciente[i].ComorbidadeObesidade);
 		fscanf(arq, "%[^\n]", vetorPaciente[i].FicouInternado); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
 	}
@@ -244,13 +254,81 @@ void lerEntrada()
 	}
 
 	filtrarDatas(&mortes_anoD1, &mortes_mesD1, &mortes_diaD1, &mortes_anoD2, &mortes_mesD2, &mortes_diaD2);
+
+	//executar funcoes
+	cidadesMaisNCasosOrdemAlfab(Ncasos);
 }
 
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2)
 {
 	scanf("%d-%d-%d %d-%d-%d", anoD1, mesD1, diaD1, anoD2, mesD2, diaD2); // ler ano-mes-dia das datas 1 e 2
+}
 
-	return;
+void cidadesMaisNCasosOrdemAlfab(int Ncasos)
+{
+	int i, todosCasos;
+
+	for (i = 0; i < 78; i++) // verificando cada municipio em ordem alfabetica
+	{
+		todosCasos = totalDeCasosMun(matrizMunicipios[i]); // verificando se municipio de indice i possui casos confirmados
+
+		if (todosCasos > Ncasos) // se total de casos de um dado municipio for maior que o numero minimo de casos...
+		{
+			printf("- %s: %d casos\n", matrizMunicipios[i], todosCasos); // imprimir municipio e seu total de casos
+		}
+	}
+}
+
+int totalDeCasosMun(char muni[])
+{
+	int i, total = 0;
+
+	for (i = 0; i < TAMVETOR; i++) // verificar em todo o vetor de struct
+	{
+		if (strcmp(muni, vetorPaciente[i].Municipio) == 0) // funcao que compara string1 e string2 usada para verificar se as strings sao iguais
+		{
+			if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // comparando para contar apenas casos de covid confirmados (se nao houver diferenca retorna 0)
+			{
+				total++;
+			}
+		}
+	}
+
+	return total;
+}
+
+int contarCasosEntreD1eD2(char muni[], tData data1, tData data2)
+{
+	int qtdCasos = 0, i;
+
+	for (data1; !datasCoincidem(data1, data2); data1 = dataSeguinte(data1)) // varrer de D1 a D2
+	{
+		for (i = 0; i < TAMVETOR; i++)
+		{
+			if (datasCoincidem(vetorPaciente[i].DataCadastro, data1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
+			{
+				if (strcmp(vetorPaciente[i].Municipio, muni) == 0) // compara municipio do paciene no vetor ao municipio informado
+				{
+					if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // se a classificacao do paciente for confirmada para o covid...
+					{
+						qtdCasos++;
+					}
+				}
+			}
+		}
+	}
+
+	return qtdCasos;
+}
+
+int datasCoincidem(tData data1, tData data2)
+{
+  return ((data1.dia == data2.dia) && (data1.mes == data2.mes));
+}
+
+tData dataSeguinte(tData data1)
+{
+	//
 }
 
 int lerSIMouNAO(char string[])
@@ -331,6 +409,4 @@ void pularPrimeiraLinha(FILE *arq)
 	{
 		// apenas para esquecer a primeira linha
 	}
-
-	return;
 }
