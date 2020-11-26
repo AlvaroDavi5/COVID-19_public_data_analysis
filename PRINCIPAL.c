@@ -9,7 +9,7 @@
 
 
 // definicao de constantes
-#define TAMVETOR 210000
+#define TAMVETOR 324
 #define FALSE 0
 #define TRUE 1
 
@@ -55,14 +55,16 @@ typedef struct
 
 
 // prototipos de funcoes
+int contadorDeLinhas(FILE *arq);
 void lerEntrada();
-void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[]);
-void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
+void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[]);
+void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 void pularPrimeiraLinha(FILE *arq);
 int lerSIMouNAO(char string[]);
 int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
+double calcularPercentual(int num, int total);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -71,37 +73,25 @@ int ehBissexto(int ano);
 // funcao principal
 int main()
 {
-	static tDadosPaciente vetorPaciente[TAMVETOR]; // definido como static para evitar falha de segmentacao
-
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
 	//arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
 	arq = fopen("./readtest.csv", "r");
+
+	int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo
+	tDadosPaciente vetorPaciente[tamVetor]; // definido vetor e tamanho do vetor
 
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
 		printf("Erro na abertura: arquivo nao encontrado!\n");
 		exit(1); // forca o encerramento do programa (POR CONVENÇÃO: retorna 0 caso tudo ocorra bem, retorna um número diferente de 0 caso ocorra um erro)
 	}
-	else
-	{
-		pularPrimeiraLinha(arq); // ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha
 
-		while (! feof(arq)) // enquanto arquivo nao chega ao fim...
-		{
-			if (feof(arq)) // evitar que o while seja executado mesmo quando o arquivo terminar (EOF)
-			{
-				break;
-			}
-			else
-			{
-				lerArquivoCSV(arq, vetorPaciente);
-				// para proximas funcionalidades
-				imprimeDadosColetados(arq, vetorPaciente);
-			}
-		}
-		//lerEntrada();
-	}
+	pularPrimeiraLinha(arq); // ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha
+	lerArquivoCSV(tamVetor, arq, vetorPaciente);
+	// para proximas funcionalidades
+	imprimeDadosColetados(tamVetor, vetorPaciente);
+	//lerEntrada();
 
 	fclose(arq); // fechar arquivo e limpar o que foi armazenado no buffer
 
@@ -113,16 +103,34 @@ int main()
 
 
 // todas as funcoes
-void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[])
+int contadorDeLinhas(FILE *arq)
+{
+	int numLinhas = 0; // variavel de contagem
+
+	char c, letra = '\n';
+
+	while(fread (&c, sizeof(char), 1, arq))
+	{
+		if (feof(arq))
+			break;
+		if(c == letra)
+		{
+			numLinhas++;
+		}
+	}
+
+	printf("\nLinhas: %i\n",numLinhas);
+	rewind(arq);
+
+	return numLinhas - 2;
+}
+
+void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
 {
 	int i;
 
-	for (i = 0; i < TAMVETOR; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
+	for (i = 0; i < tamVetor; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
 	{
-		if (feof(arq)) // funcao usada para evitar que a funcao lerArquivoCVS continue registrando dados no vetor mesmo apos o fim do arquivo
-		{
-			break; // netnar com whlie not feof ou while not eof
-		}
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
 		fscanf(arq, "%[^,],%[^,],", vetorPaciente[i].Classificacao, vetorPaciente[i].Municipio);
@@ -132,10 +140,10 @@ void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[])
 	}
 }
 
-void imprimeDadosColetados(FILE *arq, tDadosPaciente vetorPaciente[])
+void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[])
 {
 	int i;
-	for (i = 0; i < TAMVETOR; i++)
+	for (i = 0; i < tamVetor; i++)
 	{
 		printf("data cadastro = %02d/%02d/%04d\n", vetorPaciente[i].DataCadastro.dia, vetorPaciente[i].DataCadastro.mes, vetorPaciente[i].DataCadastro.ano);
 		printf("data obito = %02d/%02d/%04d\n", vetorPaciente[i].DataObito.dia, vetorPaciente[i].DataObito.mes, vetorPaciente[i].DataObito.ano);
@@ -179,10 +187,10 @@ void lerEntrada()
 
 	char comando[40];   
 
-    strcpy(comando,"mkdir c:\\");
-    strcat(comando, dir);
+	strcpy(comando,"mkdir c:\\");
+	strcat(comando, dir);
 
-    system(comando);
+	system(comando);
 
 	-----------------------------------------
 
@@ -195,6 +203,12 @@ void lerEntrada()
 	{
 		printf("DIRETORIO não CRIADO\n");
 	}
+
+	-----------------------------------------
+
+	printf("Digite o arquivo que deseja abrir: ");
+	gets(arquivo);
+	arq = fopen(arquivo, "r");
 
 	*/
 
@@ -218,16 +232,6 @@ void lerEntrada()
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2)
 {
 	scanf("%d-%d-%d %d-%d-%d", anoD1, mesD1, diaD1, anoD2, mesD2, diaD2); // ler ano-mes-dia das datas 1 e 2
-
-	return;
-}
-
-void pularPrimeiraLinha(FILE *arq)
-{
-	while (fgetc(arq) != '\n')
-	{
-		// apenas para esquecer a primeira linha
-	}
 
 	return;
 }
@@ -297,4 +301,19 @@ int quantidadeDiasMes(int mes, int ano)
 int ehBissexto(int ano)
 {
 	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
+}
+
+double calcularPercentual(int num, int total)
+{
+	return (num * 100) / total;
+}
+
+void pularPrimeiraLinha(FILE *arq)
+{
+	while (fgetc(arq) != '\n')
+	{
+		// apenas para esquecer a primeira linha
+	}
+
+	return;
 }
