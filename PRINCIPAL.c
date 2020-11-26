@@ -9,7 +9,7 @@
 
 
 // definicao de constantes
-#define TAMVETOR 324
+#define TAMVETOR 202362
 #define FALSE 0
 #define TRUE 1
 
@@ -27,7 +27,7 @@ typedef struct
 	tData DataCadastro;
 	tData DataObito;
 	char Classificacao[20];
-	char Municipio[50];
+	char Municipio[35];
 	int IdadeNaDataNotificacao;
 	char ComorbidadePulmao[6];
 	char ComorbidadeCardio[6];
@@ -40,7 +40,7 @@ typedef struct
 
 typedef struct
 {
-	char nomeMun[50];
+	char nomeMun[35];
 	int casosConfMun;
 } tMunicipios; // estrutura com nome do municipio e numero de casos [para contabilizar casos por municipios]
 
@@ -48,10 +48,27 @@ typedef struct
 {
 	int casosConfEntreDatas;
 	tMunicipios muniTopNEntreDatas;
-	char muniEstats[50];
+	char muniEstats[35];
 	float mediaEntreDatas;
 	float desvpadraoEntreDatas;
 } tEstatisticas; // estatisticas em geral
+
+
+
+// matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
+char matrizMunicipios [78][35] =
+{
+	"AFONSO CLAUDIO", "AGUA DOCE DO NORTE", "AGUIA BRANCA", "ALEGRE", "ALFREDO CHAVES", "ALTO RIO NOVO", "ANCHIETA", "APIACA",
+	"ARACRUZ", "ATILIO VIVACQUA", "BAIXO GUANDU", "BARRA DE SAO FRANCISCO", "BOA ESPERANCA", "BOM JESUS DO NORTE", "BREJETUBA",
+	"CACHOEIRO DE ITAPEMIRIM", "CARIACICA", "CASTELO", "COLATINA", "CONCEICAO DA BARRA", "CONCEICAO DO CASTELO", "DIVINO DE SAO LOURENCO",
+	"DOMINGOS MARTINS", "DORES DO RIO PRETO", "ECOPORANGA", "FUNDAO", "GOVERNADOR LINDENBERG", "GUACUI", "GUARAPARI", "IBATIBA", "IBIRACU",
+	"IBITIRAMA", "ICONHA", "IRUPI", "ITAGUACU", "ITAPEMIRIM", "ITARANA", "IUNA", "JAGUARE", "JERONIMO MONTEIRO", "JOAO NEIVA", "LARANJA DA TERRA",
+	"LINHARES", "MANTENOPOLIS", "MARATAIZES", "MARECHAL FLORIANO", "MARILANDIA", "MIMOSO DO SUL", "MONTANHA", "MUCURICI", "MUNIZ FREIRE", "MUQUI",
+	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDIN",
+	"SANTA MARIA DE JETIBA", "SANTA TERESA", "SAO DOMINGOS DO NORTE", "SAO GABRIEL DA PALHA", "SAO JOSE DO CALCADO", "SAO MATEUS", "SAO ROQUE DO CANAA",
+	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
+};
+
 
 
 // prototipos de funcoes
@@ -75,11 +92,10 @@ int main()
 {
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
-	//arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
-	arq = fopen("./readtest.csv", "r");
+	arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
 
 	int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo
-	tDadosPaciente vetorPaciente[tamVetor]; // definido vetor e tamanho do vetor
+	static tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor
 
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
@@ -119,8 +135,7 @@ int contadorDeLinhas(FILE *arq)
 		}
 	}
 
-	printf("\nLinhas: %i\n",numLinhas);
-	rewind(arq);
+	rewind(arq); // reinicia o apontador doa posicao de leitura do arquivo
 
 	return numLinhas - 2;
 }
@@ -129,7 +144,7 @@ void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
 {
 	int i;
 
-	for (i = 0; i < tamVetor; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
+	for (i = 0; i < TAMVETOR; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
 	{
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
@@ -143,8 +158,9 @@ void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
 void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[])
 {
 	int i;
-	for (i = 0; i < tamVetor; i++)
+	for (i = 0; i < TAMVETOR; i++)
 	{
+		printf("Linha %d\n", i+1);
 		printf("data cadastro = %02d/%02d/%04d\n", vetorPaciente[i].DataCadastro.dia, vetorPaciente[i].DataCadastro.mes, vetorPaciente[i].DataCadastro.ano);
 		printf("data obito = %02d/%02d/%04d\n", vetorPaciente[i].DataObito.dia, vetorPaciente[i].DataObito.mes, vetorPaciente[i].DataObito.ano);
 		printf("classificacao = %s\n", vetorPaciente[i].Classificacao);
@@ -157,6 +173,7 @@ void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[])
 		printf("comorbidadeTabagismo = %s\n", vetorPaciente[i].ComorbidadeTabagismo);
 		printf("comorbidadeObesidade = %s\n", vetorPaciente[i].ComorbidadeObesidade);
 		printf("ficou internado = %s\n\n", vetorPaciente[i].FicouInternado);
+		printf("\n");
 	}
 }
 
@@ -166,7 +183,7 @@ void lerEntrada()
 	int Ncasos;
 	int casos_anoD1, casos_mesD1, casos_diaD1, casos_anoD2, casos_mesD2, casos_diaD2;
 	int topNcasos, top_anoD1, top_mesD1, top_diaD1, top_anoD2, top_mesD2, top_diaD2;
-	char muni[50];
+	char muni[35];
 	int mortes_anoD1, mortes_mesD1, mortes_diaD1, mortes_anoD2, mortes_mesD2, mortes_diaD2;
 
 	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
@@ -185,7 +202,7 @@ void lerEntrada()
 
 	-----------------------------------------
 
-	char comando[40];   
+	char comando[40]; 
 
 	strcpy(comando,"mkdir c:\\");
 	strcat(comando, dir);
