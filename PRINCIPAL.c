@@ -78,16 +78,18 @@ tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, de
 // prototipos de funcoes
 int contadorDeLinhas(FILE *arq);
 void lerEntrada();
-void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[]);
-void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[]); // para ser removida futuramente
+void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[]);
+void imprimeDadosColetados(tDadosPaciente vetorPaciente[]); // para ser removida futuramente
 void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
 int lerSIMouNAO(char string[]); // talvez possa ser removida
 void cidadesMaisNCasosOrdemAlfab(int Ncasos); // para item3
 int totalDeCasosMun(char muni[]);
-int contarCasosEntreD1eD2(char muni[], tData data1, tData data2); // para item4
+void totalCasosEntreD1eD2(tData data1, tData data2);// para item4
 int datasCoincidem(tData data1, tData data2);
 tData dataSeguinte(tData data1);
-int quantidadeDiasMes(int mes, int ano, char muni[]);
+void topNCidades(int topNcasos, tData data1, tData data2); // para item5
+int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[]);
+int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
 double calcularPercentual(int num, int total);
 void pularPrimeiraLinha(FILE *arq);
@@ -103,7 +105,7 @@ int main()
 
 	arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
 
-	int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo [deve ser usada apenas quando se for ler arquivos diferentes]
+	//int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo [deve ser usada apenas quando se for ler arquivos diferentes]
 
 	if (arq == NULL) // caso o arquivo nao exista, a funcao retorna um ponteiro nulo (NULL)
 	{
@@ -112,8 +114,8 @@ int main()
 	}
 
 	pularPrimeiraLinha(arq); // ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha
-	lerArquivoCSV(tamVetor, arq, vetorPaciente);
-	//imprimeDadosColetados(tamVetor, vetorPaciente);
+	lerArquivoCSV(arq, vetorPaciente);
+	//imprimeDadosColetados(vetorPaciente);
 	//lerEntrada();
 	//listarCidadesTopNCasosEntreD1eD2();
 	//determinarPercentuais();
@@ -150,7 +152,7 @@ int contadorDeLinhas(FILE *arq)
 	return numLinhas - 2; // removidas primeira e ultima linhas
 }
 
-void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
+void lerArquivoCSV(FILE *arq, tDadosPaciente vetorPaciente[])
 {
 	int i;
 
@@ -165,7 +167,7 @@ void lerArquivoCSV(int tamVetor, FILE *arq, tDadosPaciente vetorPaciente[])
 	}
 }
 
-void imprimeDadosColetados(int tamVetor, tDadosPaciente vetorPaciente[])
+void imprimeDadosColetados(tDadosPaciente vetorPaciente[])
 {
 	int i;
 	for (i = 0; i < TAMVETOR; i++)
@@ -253,7 +255,7 @@ void lerEntrada()
 		muni[k] = toupper (muni[k]); // converter para mauscula cada letra do vetor de caracteres
 	}
 
-	filtrarDatas(&mortes_anoD1, &mortes_mesD1, &mortes_diaD1, &mortes_anoD2, &mortes_mesD2, &mortes_diaD2);
+	filtrarDatas(&mortes_anoD1, &mortes_mesD1, &mortes_diaD1, &mortes_anoD2, &mortes_mesD2, &mortes_diaD2); // trocar pelo formato tData
 
 	//executar funcoes
 	cidadesMaisNCasosOrdemAlfab(Ncasos);
@@ -274,7 +276,7 @@ void cidadesMaisNCasosOrdemAlfab(int Ncasos)
 
 		if (todosCasos > Ncasos) // se total de casos de um dado municipio for maior que o numero minimo de casos...
 		{
-			printf("- %s: %d casos\n", matrizMunicipios[i], todosCasos); // imprimir municipio e seu total de casos
+			printf("- %s: %d casos\n", matrizMunicipios[i], &todosCasos); // imprimir municipio e seu total de casos
 		}
 	}
 }
@@ -297,7 +299,46 @@ int totalDeCasosMun(char muni[])
 	return total;
 }
 
-int contarCasosEntreD1eD2(char muni[], tData data1, tData data2)
+void totalCasosEntreD1eD2(tData data1, tData data2)
+{
+	int casosTotal = 0, i;
+
+	for (data1; !datasCoincidem(data1, data2); data1 = dataSeguinte(data1)) // varrer de D1 a D2
+	{
+		for (i = 0; i < TAMVETOR; i++)
+		{
+			if (datasCoincidem(vetorPaciente[i].DataCadastro, data1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
+			{
+				if (strcmp(vetorPaciente[i].Municipio, muni) == 0) // compara municipio do paciene no vetor ao municipio informado
+				{
+					if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // se a classificacao do paciente for confirmada para o covid...
+					{
+						casosTotal++;
+					}
+				}
+			}
+		}
+	}
+
+	printf("- Total de pessoas: %d", &casosTotal);
+}
+
+int datasCoincidem(tData data1, tData data2)
+{
+  return ((data1.dia == data2.dia) && (data1.mes == data2.mes));
+}
+
+tData dataSeguinte(tData data1)
+{
+	//
+}
+
+void topNCidades(int topNcasos, tData data1, tData data2)
+{
+	//
+}
+
+int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 {
 	int qtdCasos = 0, i;
 
@@ -319,16 +360,6 @@ int contarCasosEntreD1eD2(char muni[], tData data1, tData data2)
 	}
 
 	return qtdCasos;
-}
-
-int datasCoincidem(tData data1, tData data2)
-{
-  return ((data1.dia == data2.dia) && (data1.mes == data2.mes));
-}
-
-tData dataSeguinte(tData data1)
-{
-	//
 }
 
 int lerSIMouNAO(char string[])
