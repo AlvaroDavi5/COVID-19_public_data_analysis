@@ -25,13 +25,8 @@ ler arquivo .txt como input
 		ler d1 e d2  
 
 
-criar struct para estatisticas  
-
-limitar tamanho do vetor e quantidade de dados coletados  
-
 ## contabilizar casos especificos [com funcoes]  
 
-		listar, em ordem alfabetica, as cidades com mais de N casos de covid-19 [com funcao]  
 		determinar quantos casos foram registrados em um intervalo de datas, onde d1 < d2 sempre [com funcao]  
 
 		listar cidades top N casos no intervalo [d1, d2] cuja saida sera em ordem decrescente por numero de casos [com funcao]  
