@@ -42,7 +42,7 @@ typedef struct
 {
 	char nomeMun[35];
 	int casosConfMun;
-} tMunicipios; // estrutura com nome do municipio e numero de casos [para contabilizar casos por municipios]
+} tMunicipiosECasos; // estrutura com nome do municipio e numero de casos [para contabilizar casos por municipios]
 
 
 
@@ -60,7 +60,7 @@ char matrizMunicipios [78][35] =
 	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
 }; // matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
 
-tMunicipios vetorMunicipios[78]; // vetor de struct para contabilizar casos de municipios
+tMunicipiosECasos vetorMunicipios[78]; // vetor de struct para contabilizar casos de municipios
 
 tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, definido como global para evitar falha de segmentacao
 
@@ -70,8 +70,8 @@ tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, de
 int contadorDeLinhas(FILE *arq);
 void lerEntrada();
 void lerArquivoCSV(FILE *arq);
-void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2);
-int lerSIMouNAO(char string[]); // talvez possa ser removida
+tData filtrarDatas();
+	int lerSIMouNAO(char string[]); // talvez possa ser removida
 void cidadesMaisNCasosOrdemAlfab(int Ncasos); // para item3
 int totalDeCasosMun(char muni[]);
 void totalCasosEntreD1eD2(tData data1, tData data2);// para item4
@@ -79,9 +79,14 @@ int datasCoincidem(tData data1, tData data2);
 tData dataSeguinte(tData data1);
 void topNCidades(int topNcasos, tData data1, tData data2); // para item5
 int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[]);
+void ordenarDecresc(tMunicipiosECasos casosMuni[]);
+void percentConfInter(char muni[]); //para item6
+void percentMortes(char muni[]);
+void percentInterMorte(char muni[]);
+void Media_DPidades_percentMortesSemComorb_entreD1eD2(tData confMortD1, tData confMortD2); //para item7
 int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
-double calcularPercentual(int num, int total);
+float calcularPercentual(int num, int total);
 void pularPrimeiraLinha(FILE *arq);
 
 
@@ -157,10 +162,11 @@ void lerEntrada()
 {
 	char dir[40];
 	int Ncasos;
-	int casos_anoD1, casos_mesD1, casos_diaD1, casos_anoD2, casos_mesD2, casos_diaD2;
-	int topNcasos, top_anoD1, top_mesD1, top_diaD1, top_anoD2, top_mesD2, top_diaD2;
+	tData casosD1, casosD2;
+	int topNcasos;
+	tData topNCData1, topNCData2;
 	char muni[35];
-	int mortes_anoD1, mortes_mesD1, mortes_diaD1, mortes_anoD2, mortes_mesD2, mortes_diaD2;
+	tData confMortD1, confMortD2;
 
 	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
 	/*
@@ -207,10 +213,12 @@ void lerEntrada()
 
 	scanf("%d\n", &Ncasos); // ler numero de casos confirmados [para listar em ordem alfabetica as cidades com mais de tais casos]
 
-	filtrarDatas(&casos_anoD1, &casos_mesD1, &casos_diaD1, &casos_anoD2, &casos_mesD2, &casos_diaD2);
+	casosD1 = filtrarDatas(); // ler intervalo de datas [D1, D2] para contagem de casos confirmados
+	casosD2 = filtrarDatas();
 
-	scanf("%d ", &topNcasos);
-	filtrarDatas(&top_anoD1, &top_mesD1, &top_diaD1, &top_anoD2, &top_mesD2, &top_diaD2);
+	scanf("%d ", &topNcasos); // ler intervalo de datas para listar top N cidades
+	topNCData1 = filtrarDatas();
+	topNCData2 = filtrarDatas();
 
 	scanf("%s\n", muni);
 	int tamStr = strlen(muni); // pegar tamanho da string
@@ -218,19 +226,26 @@ void lerEntrada()
 	{
 		muni[k] = toupper (muni[k]); // converter para mauscula cada letra do vetor de caracteres
 	}
+	confMortD1 = filtrarDatas(); // ler intervalo de datas para calcular percentual de mortes, internacoes e ambos
+	confMortD2 = filtrarDatas();
 
-	filtrarDatas(&mortes_anoD1, &mortes_mesD1, &mortes_diaD1, &mortes_anoD2, &mortes_mesD2, &mortes_diaD2); // trocar pelo formato tData
-
-	//executar funcoes
+	//executar funcoes dos items
 	cidadesMaisNCasosOrdemAlfab(Ncasos);
-	//listarCidadesTopNCasosEntreD1eD2();
-	//determinarPercentuais();
-	//MeDPIdades_percentMortesSemComorb_entreD1eD2();
+	totalCasosEntreD1eD2(casosD1, casosD2);
+	topNCidades(topNcasos, topNCData1, topNCData2);
+	percentConfInter(muni);
+	percentMortes(muni);
+	percentInterMorte(muni);
+	Media_DPidades_percentMortesSemComorb_entreD1eD2(confMortD1, confMortD2);
 }
 
-void filtrarDatas(int *anoD1, int *mesD1, int *diaD1, int *anoD2, int *mesD2, int *diaD2)
+tData filtrarDatas()
 {
-	scanf("%d-%d-%d %d-%d-%d", anoD1, mesD1, diaD1, anoD2, mesD2, diaD2); // ler ano-mes-dia das datas 1 e 2
+	tData data;
+
+	scanf("%d-%d-%d", &data.ano, &data.mes, &data.dia); // ler ano-mes-dia
+
+	return data;
 }
 
 void cidadesMaisNCasosOrdemAlfab(int Ncasos)
@@ -270,7 +285,7 @@ void totalCasosEntreD1eD2(tData data1, tData data2)
 {
 	int casosTotal = 0, i;
 
-	for (data1; !datasCoincidem(data1, data2); data1 = dataSeguinte(data1)) // varrer de D1 a D2
+	while (!datasCoincidem(data1, data2)) // varrer de D1 a D2
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
@@ -282,31 +297,71 @@ void totalCasosEntreD1eD2(tData data1, tData data2)
 				}
 			}
 		}
+		data1 = dataSeguinte(data1);
 	}
 
-	printf("- Total de pessoas: %d\n", &casosTotal);
+	printf("- Total de pessoas: %d\n", casosTotal);
 }
 
 int datasCoincidem(tData data1, tData data2)
 {
-  return ((data1.dia == data2.dia) && (data1.mes == data2.mes));
+	if ((data1.dia == data2.dia) && (data1.mes == data2.mes))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 tData dataSeguinte(tData data1)
 {
-	//
+	int qtdDiasD1 = quantidadeDiasMes(data1.mes, data1.ano); // verificando quantidade de dias da D1
+
+	if (data1.mes == 12 && qtdDiasD1 == data1.dia) // iniciando novo ano se a data for o ultimo dia do ano
+	{
+		data1.dia = 1;
+		data1.mes = 1;
+		data1.ano++;
+	}
+	else if (data1.dia == qtdDiasD1) // entrando apenas em um novo mes, caso o dia seja o ultimo do mes
+	{
+		data1.dia = 1;
+		data1.mes++;
+	}
+	else if (data1.dia < qtdDiasD1) // apenas aumentando o dia ate a quantidade maxima de dias do mes
+	{
+		data1.dia++;
+	}
+
+	return data1;
 }
 
 void topNCidades(int topNcasos, tData data1, tData data2)
 {
-	//
+	tMunicipiosECasos casosMuni[78];
+
+	for (int i = 0; i < 78; i++) // verificando em toda a matriz dos municipios
+	{
+		casosMuni[i].casosConfMun = contarCasosEntreD1eD2Muni(data1, data2, matrizMunicipios[i]); // contando casos confirmados entre D1 e D2 e informar municipio da posicao i
+		strcpy(casosMuni[i].nomeMun, matrizMunicipios[i]); // a funcao strcpy copia a string1 para onde se encontra a string2
+	}
+
+	ordenarDecresc(casosMuni); // ordenando vetor
+
+	for(int j = 0; j < topNcasos; j++)
+	{
+		printf("%s: %d\n", casosMuni[j].nomeMun, casosMuni[j].casosConfMun);
+	}
 }
 
 int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 {
+	data2.dia += 1;
 	int qtdCasos = 0, i;
 
-	for (data1; !datasCoincidem(data1, data2); data1 = dataSeguinte(data1)) // varrer de D1 a D2
+	while (!datasCoincidem(data1, data2)) // varrer de D1 a D2
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
@@ -321,9 +376,53 @@ int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 				}
 			}
 		}
+		data1 = dataSeguinte(data1);
 	}
 
 	return qtdCasos;
+}
+
+void ordenarDecresc(tMunicipiosECasos* casosMuni)
+{
+	char nomeMunicipio[35]; // variaveis temporarias
+	int numCasos;
+
+	// metodo de ordenacao para varrer todo o vetor e comparar quantidade de casos confirmados, ordenando do maior para o menor
+	for (int j = 0; j < 77; j++)
+	{
+		for (int k = 0; k < 76-j; k++)
+		{
+			if(casosMuni[k].casosConfMun < casosMuni[k+1].casosConfMun)
+			{
+				numCasos = casosMuni[k].casosConfMun; // anotando casos confirmados
+				strcpy(nomeMunicipio, casosMuni[k].nomeMun); // copiando nome do municipio com funcao strcpy
+				casosMuni[k].casosConfMun = casosMuni[k+1].casosConfMun;
+				strcpy(casosMuni[k].nomeMun, casosMuni[k+1].nomeMun);
+				casosMuni[k+1].casosConfMun = numCasos;
+				strcpy(casosMuni[k+1].nomeMun, nomeMunicipio);
+			}
+		}
+	}
+}
+
+void percentConfInter(char muni[])
+{
+	//
+}
+
+void percentMortes(char muni[])
+{
+	//
+}
+
+void percentInterMorte(char muni[])
+{
+	//
+}
+
+void Media_DPidades_percentMortesSemComorb_entreD1eD2(tData confMortD1, tData confMortD2)
+{
+	//
 }
 
 int lerSIMouNAO(char string[])
@@ -393,7 +492,7 @@ int ehBissexto(int ano)
 	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
 }
 
-double calcularPercentual(int num, int total)
+float calcularPercentual(int num, int total)
 {
 	return (num * 100) / total;
 }
