@@ -150,13 +150,20 @@ void lerArquivoCSV(FILE *arq)
 
 	int i;
 
+	// lendo dados do arquivo csv
 	for (i = 0; i < TAMVETOR; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
 	{
-		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia); // lendo dados do arquivo csv
+		// data de cadastro
+		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataCadastro.ano, &vetorPaciente[i].DataCadastro.mes, &vetorPaciente[i].DataCadastro.dia);
+		// data de obito
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
+		// classificacao e municipio
 		fscanf(arq, "%[^,],%[^,],", vetorPaciente[i].Classificacao, vetorPaciente[i].Municipio);
+		// idade do paciente
 		fscanf(arq, "%*c%d %*[^\"]%*c,", &vetorPaciente[i].IdadeNaDataNotificacao); // usado operador %*c para descartar as informacoes alem da idade em anos
+		// comorbidades
 		fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],", vetorPaciente[i].ComorbidadePulmao, vetorPaciente[i].ComorbidadeCardio, vetorPaciente[i].ComorbidadeRenal, vetorPaciente[i].ComorbidadeDiabetes, vetorPaciente[i].ComorbidadeTabagismo, vetorPaciente[i].ComorbidadeObesidade);
+		// ficou internado
 		fscanf(arq, "%[^\n]", vetorPaciente[i].FicouInternado); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
 	}
 }
@@ -587,7 +594,7 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 			{
 				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
-					somaQuadDifIdadeM += ((vetorPaciente[i].IdadeNaDataNotificacao - media)*(vetorPaciente[i].IdadeNaDataNotificacao - media)); // somatorio do quadrado das diferencas entre idades e media
+					somaQuadDifIdadeM += ((vetorPaciente[i].IdadeNaDataNotificacao - media) * (vetorPaciente[i].IdadeNaDataNotificacao - media)); // somatorio do quadrado das diferencas entre idades e media
 				}
 			}
 		}
@@ -601,7 +608,8 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 void mortesSemComorb(tData confMortD1, tData confMortD2)
 {
 	tData dataNula;
-	int i, mortes = 0, mortesSemComorb = 0;
+	int i;
+	float mortes = 0, mortesSemComorb = 0;
 
 	dataNula.dia = 0;
 	dataNula.mes = 0;
@@ -618,12 +626,12 @@ void mortesSemComorb(tData confMortD1, tData confMortD2)
 					mortes++; // contagem de mortes de pessoas com covid
 
 					// verificar se paciente nao tem nenhuma das 6 comorbidade
-					if (strcmp(vetorPaciente[i].ComorbidadePulmao, "Não") == 0)
-						if (strcmp(vetorPaciente[i].ComorbidadeCardio, "Não") == 0)
-							if (strcmp(vetorPaciente[i].ComorbidadeRenal, "Não") == 0)
-								if (strcmp(vetorPaciente[i].ComorbidadeDiabetes, "Não") == 0)
-									if (strcmp(vetorPaciente[i].ComorbidadeTabagismo, "Não") == 0)
-										if (strcmp(vetorPaciente[i].ComorbidadeObesidade, "Não") == 0)
+					if (! (strcmp(vetorPaciente[i].ComorbidadePulmao, "Sim") == 0))
+						if (! (strcmp(vetorPaciente[i].ComorbidadeCardio, "Sim") == 0))
+							if (! (strcmp(vetorPaciente[i].ComorbidadeRenal, "Sim") == 0))
+								if (! (strcmp(vetorPaciente[i].ComorbidadeDiabetes, "Sim") == 0))
+									if (! (strcmp(vetorPaciente[i].ComorbidadeTabagismo, "Sim") == 0))
+										if (! (strcmp(vetorPaciente[i].ComorbidadeObesidade, "Sim") == 0))
 												mortesSemComorb++;
 				}
 			}
