@@ -295,7 +295,7 @@ void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 		casosD1 = dataSeguinte(casosD1);
 	}
 
-	fprintf(fitem4, "- Total de pessoas: %d\n", casosTotal);
+	fprintf(fitem4, "- Total de pessoas: %d", casosTotal);
 
 	fclose(fitem4);
 }
@@ -553,7 +553,7 @@ void percentInterMorte(FILE *fitem6, char muni[])
 		}
 	}
 
-	fprintf(fitem6, "- A %% de pessoas que ficaram internadas e morreram: %.3f%%\n", calcularPercentual(interMortes, qtdMortes));
+	fprintf(fitem6, "- A %% de pessoas que ficaram internadas e morreram: %.3f%%", calcularPercentual(interMortes, qtdMortes));
 }
 
 void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD2)
@@ -614,13 +614,13 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 			{
 				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
-					somaQuadDifIdadeM += ((vetorPaciente[i].IdadeNaDataNotificacao - media) * (vetorPaciente[i].IdadeNaDataNotificacao - media)); // somatorio do quadrado das diferencas entre idades e media
+					somaQuadDifIdadeM += pow((vetorPaciente[i].IdadeNaDataNotificacao - media), 2); // somatorio do quadrado das diferencas entre idades e media
 				}
 			}
 		}
 		data1 = dataSeguinte(data1); // aumentar D1 ate coincidir com D2
 	}
-	desvpadr = sqrt((somaQuadDifIdadeM / contIdades)); // desvio padrao calculado
+	desvpadr = sqrt((somaQuadDifIdadeM / (contIdades - 1))); // desvio padrao calculado
 
 	return desvpadr;
 }
@@ -659,7 +659,7 @@ void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 		dataMD1 = dataSeguinte(dataMD1); // aumentar D1 ate coincidir com D2
 	}
 
-	fprintf(fitem7, "A %% de pessoas que morreram sem comorbidade: %.3f%%\n", calcularPercentual(mortesSemComorb, mortes));
+	fprintf(fitem7, "A %% de pessoas que morreram sem comorbidade: %.3f%%", calcularPercentual(mortesSemComorb, mortes));
 }
 
 int quantidadeDiasMes(int mes, int ano)

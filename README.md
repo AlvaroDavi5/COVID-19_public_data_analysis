@@ -1,6 +1,5 @@
 # Falta:
-	·corrigir bug ao listar cidades top n de mais casos em ordem decrescente
-	·corrigir bug ao determinar desvio padrão
+	·corrigir bug ao listar cidades top n de mais casos em ordem decrescente (item 5)
 
 ---------------------------------------------------------------------------------------------
 
