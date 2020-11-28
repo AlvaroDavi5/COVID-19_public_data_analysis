@@ -69,20 +69,20 @@ int contadorDeLinhas(FILE *arq);
 void lerEntrada();
 void lerArquivoCSV(FILE *arq);
 tData filtrarDatas();
-void cidadesMaisNCasosOrdemAlfab(int Ncasos); // para item3
+void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos); // para item3
 int totalDeCasosMun(char muni[]);
-void totalCasosEntreD1eD2(tData casosD1, tData casosD2);// para item4
+void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2);// para item4
 int datasCoincidem(tData data1, tData data2);
 tData dataSeguinte(tData data1);
-void topNCidades(int topNcasos, tData data1, tData data2); // para item5
+void topNCidades(char dir[], int topNcasos, tData data1, tData data2); // para item5
 int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[]);
 void ordenarDecresc(tMunicipiosECasos casosMuni[]);
-void percentConfInter(char muni[]); //para item6
-void percentMortes(char muni[]);
-void percentInterMorte(char muni[]);
-void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2); //para item7
+void percentConfInter(char dir[], char muni[]); //para item6
+void percentMortes(FILE *fitem6, char muni[]);
+void percentInterMorte(FILE *fitem6, char muni[]);
+void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD2); //para item7
 float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, float media);
-void mortesSemComorb(tData confMortD1, tData confMortD2);
+void mortesSemComorb(FILE *fitem7, tData confMortD1, tData confMortD2);
 int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
 float calcularPercentual(float num, float total);
@@ -170,7 +170,7 @@ void lerArquivoCSV(FILE *arq)
 
 void lerEntrada()
 {
-	char dir[40];
+	char dir[40], comando[40];
 	int Ncasos;
 	tData casosD1, casosD2;
 	int topNcasos;
@@ -178,48 +178,7 @@ void lerEntrada()
 	char muni[35];
 	tData confMortD1, confMortD2;
 
-	scanf("%s\n", dir); // ler diretorio de salvamento escolhido no input
-	/*
-
-	int created = mkdir("PASTA", 0777)
-
-	if (created == 0)
-	{
-		printf("Deu certo!\n");
-	}
-	else
-	{
-		printf("Deu ruim!\n");
-	}
-
-	-----------------------------------------
-
-	char comando[40]; 
-
-	strcpy(comando,"mkdir c:\\");
-	strcat(comando, dir);
-
-	system(comando);
-
-	-----------------------------------------
-
-	int teste;
-
-	teste = mkdir(dir);
-	if (! teste)
-		printf("DIRETORIO CRIADO\n");
-	else
-	{
-		printf("DIRETORIO não CRIADO\n");
-	}
-
-	-----------------------------------------
-
-	printf("Digite o arquivo que deseja abrir: ");
-	gets(arquivo);
-	arq = fopen(arquivo, "r");
-
-	*/
+	scanf("%[^\n]", dir); // ler diretorio do output escolhido no input
 
 	scanf("%d\n", &Ncasos); // ler numero de casos confirmados para listar em ordem alfabetica as cidades com mais de tais casos
 
@@ -242,16 +201,17 @@ void lerEntrada()
 	confMortD2 = filtrarDatas();
 	confMortD2.dia++; // para incluir o ultimo dia da data2 no while (pois ele le de D1 a D2 e para quando D1 == D2, excluindo o ultimo caso)
 
+	// para criar diretorio [Linux]
+	strcpy(comando,"mkdir ");
+	strcat(comando, dir);
+	system(comando); // copiado comando 'mkdir' para a variavel comando e concatenado ao diretorio do input
+
 	//executar funcoes dos items
-	cidadesMaisNCasosOrdemAlfab(Ncasos);
-	totalCasosEntreD1eD2(casosD1, casosD2);
-	topNCidades(topNcasos, topNCData1, topNCData2);
-	printf("- Resultados para %s:\n", muni);
-	percentConfInter(muni);
-	percentMortes(muni);
-	percentInterMorte(muni);
-	Media_DesvP_idades_entreD1eD2(confMortD1, confMortD2);
-	mortesSemComorb(confMortD1, confMortD2);
+	cidadesMaisNCasosOrdemAlfab(dir, Ncasos);
+	totalCasosEntreD1eD2(dir, casosD1, casosD2);
+	topNCidades(dir, topNcasos, topNCData1, topNCData2);
+	percentConfInter(dir, muni);
+	Media_DesvP_idades_entreD1eD2(dir, confMortD1, confMortD2);
 }
 
 tData filtrarDatas()
@@ -263,8 +223,17 @@ tData filtrarDatas()
 	return data;
 }
 
-void cidadesMaisNCasosOrdemAlfab(int Ncasos)
+void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 {
+	char caminho[40];
+	FILE *fitem3;
+
+	// criar caminho para item3
+	strcpy(caminho, dir);
+	strcat(caminho, "item3.txt");
+
+	fitem3 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
+
 	int i, todosCasos;
 
 	for (i = 0; i < 78; i++) // verificando cada municipio em ordem alfabetica
@@ -273,9 +242,11 @@ void cidadesMaisNCasosOrdemAlfab(int Ncasos)
 
 		if (todosCasos > Ncasos) // se total de casos de um dado municipio for maior que o numero minimo de casos...
 		{
-			printf("- %s: %d casos\n", matrizMunicipios[i], todosCasos); // imprimir municipio e seu total de casos
+			fprintf(fitem3, "- %s: %d casos\n", matrizMunicipios[i], todosCasos); // gravar municipio e seu total de casos
 		}
 	}
+
+	fclose(fitem3);
 }
 
 int totalDeCasosMun(char muni[])
@@ -296,8 +267,17 @@ int totalDeCasosMun(char muni[])
 	return total;
 }
 
-void totalCasosEntreD1eD2(tData casosD1, tData casosD2)
+void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 {
+	char caminho[40];
+	FILE *fitem4;
+
+	// criar caminho para item4
+	strcpy(caminho, dir);
+	strcat(caminho, "item4.txt");
+
+	fitem4 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
+
 	int casosTotal = 0, i;
 
 	while (! datasCoincidem(casosD1, casosD2)) // varrer de D1 a D2
@@ -315,7 +295,9 @@ void totalCasosEntreD1eD2(tData casosD1, tData casosD2)
 		casosD1 = dataSeguinte(casosD1);
 	}
 
-	printf("- Total de pessoas: %d\n", casosTotal);
+	fprintf(fitem4, "- Total de pessoas: %d\n", casosTotal);
+
+	fclose(fitem4);
 }
 
 int datasCoincidem(tData data1, tData data2)
@@ -357,8 +339,17 @@ tData dataSeguinte(tData data1)
 	return data1;
 }
 
-void topNCidades(int topNcasos, tData data1, tData data2)
+void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 {
+	char caminho[40];
+	FILE *fitem5;
+
+	// criar caminho para item5
+	strcpy(caminho, dir);
+	strcat(caminho, "item5.txt");
+
+	fitem5 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
+
 	tMunicipiosECasos casosMuni[78];
 
 	for (int i = 0; i < 78; i++) // verificando em toda a matriz dos municipios
@@ -371,8 +362,10 @@ void topNCidades(int topNcasos, tData data1, tData data2)
 
 	for(int j = 0; j < topNcasos; j++)
 	{
-		printf("%s: %d\n", casosMuni[j].nomeMun, casosMuni[j].casosConfMun);
+		fprintf(fitem5, "%s: %d casos\n", casosMuni[j].nomeMun, casosMuni[j].casosConfMun);
 	}
+
+	fclose(fitem5);
 }
 
 int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
@@ -424,8 +417,17 @@ void ordenarDecresc(tMunicipiosECasos* casosMuni)
 	}
 }
 
-void percentConfInter(char muni[])
+void percentConfInter(char dir[], char muni[])
 {
+	char caminho[40];
+	FILE *fitem6;
+
+	// criar caminho para item6
+	strcpy(caminho, dir);
+	strcat(caminho, "item6.txt");
+
+	fitem6 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
+
 	int i, internConf = 0, qtdCasosConf = 0;
 
 	if (strcmp(muni, "TODAS") == 0) // caso seja pedido o percentual de todas as cidades
@@ -460,10 +462,15 @@ void percentConfInter(char muni[])
 		}
 	}
 
-	printf("- A %% de pessoas com Covid-19 que ficaram internadas: %.3f%%\n", calcularPercentual(internConf, qtdCasosConf));
+	fprintf(fitem6, "- Resultados para %s:\n", muni);
+	fprintf(fitem6, "- A %% de pessoas com Covid-19 que ficaram internadas: %.3f%%\n", calcularPercentual(internConf, qtdCasosConf));
+	percentMortes(fitem6, muni); // chamando as outras funcoes
+	percentInterMorte(fitem6, muni);
+
+	fclose(fitem6);
 }
 
-void percentMortes(char muni[])
+void percentMortes(FILE *fitem6, char muni[])
 {
 	tData dataNula;
 	int i, mortes = 0, qtdCasosConf = 0;
@@ -503,10 +510,10 @@ void percentMortes(char muni[])
 		}
 	}
 
-	printf("- A %% de pessoas com Covid-19 que morreram: %.3f%%\n", calcularPercentual(mortes, qtdCasosConf));
+	fprintf(fitem6, "- A %% de pessoas com Covid-19 que morreram: %.3f%%\n", calcularPercentual(mortes, qtdCasosConf));
 }
 
-void percentInterMorte(char muni[])
+void percentInterMorte(FILE *fitem6, char muni[])
 {
 	tData dataNula;
 	int i, interMortes = 0, qtdMortes = 0;
@@ -546,12 +553,21 @@ void percentInterMorte(char muni[])
 		}
 	}
 
-	printf("- A %% de pessoas que ficaram internadas e morreram: %.3f%%\n", calcularPercentual(interMortes, qtdMortes));
+	fprintf(fitem6, "- A %% de pessoas que ficaram internadas e morreram: %.3f%%\n", calcularPercentual(interMortes, qtdMortes));
 }
 
-void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2)
+void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD2)
 {
-	tData dataNula, data1 = confMortD1, data2 = confMortD2; // data nula e backup das datas originais para calcular DP
+	char caminho[40];
+	FILE *fitem7;
+
+	// criar caminho para item7
+	strcpy(caminho, dir);
+	strcat(caminho, "item7.txt");
+
+	fitem7 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
+
+	tData dataNula, data1 = confMortD1, data2 = confMortD2, dataMD1 = confMortD1, dataMD2 = confMortD2; // data nula e backup das datas originais para calcular DP e mostrar MSC
 	int i;
 	float contIdades = 0, somaIdades = 0, media;
 
@@ -578,7 +594,11 @@ void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2)
 
 	float desviopadrao = desvioPadrao(data1, data2, dataNula, contIdades, media);
 
-	printf("A média e desvio padrão da idade: %.3f -- %.3f\n", media, desviopadrao);
+	fprintf(fitem7, "A media e desvio padrao da idade: %.3f -- %.3f\n", media, desviopadrao);
+
+	mortesSemComorb(fitem7, dataMD1, dataMD2);
+
+	fclose(fitem7);
 }
 
 float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, float media)
@@ -605,7 +625,7 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 	return desvpadr;
 }
 
-void mortesSemComorb(tData confMortD1, tData confMortD2)
+void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 {
 	tData dataNula;
 	int i;
@@ -615,11 +635,11 @@ void mortesSemComorb(tData confMortD1, tData confMortD2)
 	dataNula.mes = 0;
 	dataNula.ano = 0;
 
-	while (! datasCoincidem(confMortD1, confMortD2)) // varrer de D1 a D2
+	while (! datasCoincidem(dataMD1, dataMD2)) // varrer de D1 a D2
 	{
 		for (i = 0; i < TAMVETOR; i++) // varrer todo o vetor de pacientes
 		{
-			if (datasCoincidem(vetorPaciente[i].DataCadastro, confMortD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
+			if (datasCoincidem(vetorPaciente[i].DataCadastro, dataMD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
 			{
 				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
@@ -636,10 +656,10 @@ void mortesSemComorb(tData confMortD1, tData confMortD2)
 				}
 			}
 		}
-		confMortD1 = dataSeguinte(confMortD1); // aumentar D1 ate coincidir com D2
+		dataMD1 = dataSeguinte(dataMD1); // aumentar D1 ate coincidir com D2
 	}
 
-	printf("A %% de pessoas que morreram sem comorbidade: %.3f%%\n", calcularPercentual(mortesSemComorb, mortes));
+	fprintf(fitem7, "A %% de pessoas que morreram sem comorbidade: %.3f%%\n", calcularPercentual(mortesSemComorb, mortes));
 }
 
 int quantidadeDiasMes(int mes, int ano)
