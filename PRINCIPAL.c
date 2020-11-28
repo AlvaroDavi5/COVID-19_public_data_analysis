@@ -60,8 +60,6 @@ char matrizMunicipios [78][35] =
 	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
 }; // matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
 
-tMunicipiosECasos vetorMunicipios[78]; // vetor de struct para contabilizar casos de municipios
-
 tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, definido como global para evitar falha de segmentacao
 
 
@@ -83,12 +81,11 @@ void percentConfInter(char muni[]); //para item6
 void percentMortes(char muni[]);
 void percentInterMorte(char muni[]);
 void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2); //para item7
-float desvioPadrao(tData data1, tData data2, tData dataNula, int contIdades, float media);
-
+float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, float media);
+void mortesSemComorb(tData confMortD1, tData confMortD2);
 int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
-float calcularPercentual(int num, int total);
-void pularPrimeiraLinha(FILE *arq);
+float calcularPercentual(float num, float total);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -109,11 +106,11 @@ int main()
 		exit(1); // forca o encerramento do programa (POR CONVENÇÃO: retorna 0 caso tudo ocorra bem, retorna um número diferente de 0 caso ocorra um erro)
 	}
 
-	pularPrimeiraLinha(arq); // ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha
 	lerArquivoCSV(arq);
-	lerEntrada();
 
 	fclose(arq); // fechar arquivo e limpar o que foi armazenado no buffer
+
+	lerEntrada();
 
 	return 0;
 }
@@ -146,6 +143,11 @@ int contadorDeLinhas(FILE *arq)
 
 void lerArquivoCSV(FILE *arq)
 {
+	while (fgetc(arq) != '\n')
+	{
+		// ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha, apenas para esquecer a primeira linha
+	}
+
 	int i;
 
 	for (i = 0; i < TAMVETOR; i++) // a estrutura de repeticao preenchera todos os elementos do vetor ate o tamanho maximo
@@ -212,10 +214,11 @@ void lerEntrada()
 
 	*/
 
-	scanf("%d\n", &Ncasos); // ler numero de casos confirmados [para listar em ordem alfabetica as cidades com mais de tais casos]
+	scanf("%d\n", &Ncasos); // ler numero de casos confirmados para listar em ordem alfabetica as cidades com mais de tais casos
 
 	casosD1 = filtrarDatas(); // ler intervalo de datas [D1, D2] para contagem de casos confirmados
 	casosD2 = filtrarDatas();
+	casosD2.dia++; // para incluir o ultimo dia da data2 no while (pois ele le de D1 a D2 e para quando D1 == D2, excluindo o ultimo caso)
 
 	scanf("%d ", &topNcasos); // ler intervalo de datas para listar top N cidades
 	topNCData1 = filtrarDatas();
@@ -227,8 +230,10 @@ void lerEntrada()
 	{
 		muni[k] = toupper(muni[k]); // converter para mauscula cada letra do vetor de caracteres
 	}
+
 	confMortD1 = filtrarDatas(); // ler intervalo de datas para calcular percentual de mortes, internacoes e ambos
 	confMortD2 = filtrarDatas();
+	confMortD2.dia++; // para incluir o ultimo dia da data2 no while (pois ele le de D1 a D2 e para quando D1 == D2, excluindo o ultimo caso)
 
 	//executar funcoes dos items
 	cidadesMaisNCasosOrdemAlfab(Ncasos);
@@ -239,7 +244,7 @@ void lerEntrada()
 	percentMortes(muni);
 	percentInterMorte(muni);
 	Media_DesvP_idades_entreD1eD2(confMortD1, confMortD2);
-	// falta MSC
+	mortesSemComorb(confMortD1, confMortD2);
 }
 
 tData filtrarDatas()
@@ -322,13 +327,13 @@ tData dataSeguinte(tData data1)
 {
 	int qtdDiasD1 = quantidadeDiasMes(data1.mes, data1.ano); // verificando quantidade de dias da D1
 
-	if (data1.mes == 12 && qtdDiasD1 == data1.dia) // iniciando novo ano se a data for o ultimo dia do ano
+	if (data1.mes >= 12 && data1.dia >= qtdDiasD1) // iniciando novo ano se a data for o ultimo dia do ano
 	{
 		data1.dia = 1;
 		data1.mes = 1;
 		data1.ano++;
 	}
-	else if (data1.dia == qtdDiasD1) // entrando apenas em um novo mes, caso o dia seja o ultimo do mes
+	else if (data1.dia >= qtdDiasD1) // entrando apenas em um novo mes, caso o dia seja o ultimo do mes
 	{
 		data1.dia = 1;
 		data1.mes++;
@@ -539,11 +544,9 @@ void percentInterMorte(char muni[])
 
 void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2)
 {
-	confMortD2.dia++; // para incluir o ultimo dia da data2 no while (pois ele le de D1 a D2 e para quando D1 == D2, excluindo o ultimo caso)
-	tData data1 = confMortD1, data2 = confMortD2; // backup das datas originais para calcular DP
-	int i, contIdades = 0, somaIdades = 0;
-	float media;
-	tData dataNula;
+	tData dataNula, data1 = confMortD1, data2 = confMortD2; // data nula e backup das datas originais para calcular DP
+	int i;
+	float contIdades = 0, somaIdades = 0, media;
 
 	dataNula.dia = 0;
 	dataNula.mes = 0;
@@ -571,7 +574,7 @@ void Media_DesvP_idades_entreD1eD2(tData confMortD1, tData confMortD2)
 	printf("A média e desvio padrão da idade: %.3f -- %.3f\n", media, desviopadrao);
 }
 
-float desvioPadrao(tData data1, tData data2, tData dataNula, int contIdades, float media)
+float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, float media)
 {
 	int i;
 	float somaQuadDifIdadeM = 0, desvpadr;
@@ -595,10 +598,40 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, int contIdades, flo
 	return desvpadr;
 }
 
-float mortesSemComorb()
+void mortesSemComorb(tData confMortD1, tData confMortD2)
 {
-	//
-	//printf("A %% de pessoas que morreram sem comorbidade: %.3f%%\n", mortesSemComorb);
+	tData dataNula;
+	int i, mortes = 0, mortesSemComorb = 0;
+
+	dataNula.dia = 0;
+	dataNula.mes = 0;
+	dataNula.ano = 0;
+
+	while (! datasCoincidem(confMortD1, confMortD2)) // varrer de D1 a D2
+	{
+		for (i = 0; i < TAMVETOR; i++) // varrer todo o vetor de pacientes
+		{
+			if (datasCoincidem(vetorPaciente[i].DataCadastro, confMortD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
+			{
+				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
+				{
+					mortes++; // contagem de mortes de pessoas com covid
+
+					// verificar se paciente nao tem nenhuma das 6 comorbidade
+					if (strcmp(vetorPaciente[i].ComorbidadePulmao, "Não") == 0)
+						if (strcmp(vetorPaciente[i].ComorbidadeCardio, "Não") == 0)
+							if (strcmp(vetorPaciente[i].ComorbidadeRenal, "Não") == 0)
+								if (strcmp(vetorPaciente[i].ComorbidadeDiabetes, "Não") == 0)
+									if (strcmp(vetorPaciente[i].ComorbidadeTabagismo, "Não") == 0)
+										if (strcmp(vetorPaciente[i].ComorbidadeObesidade, "Não") == 0)
+												mortesSemComorb++;
+				}
+			}
+		}
+		confMortD1 = dataSeguinte(confMortD1); // aumentar D1 ate coincidir com D2
+	}
+
+	printf("A %% de pessoas que morreram sem comorbidade: %.3f%%\n", calcularPercentual(mortesSemComorb, mortes));
 }
 
 int quantidadeDiasMes(int mes, int ano)
@@ -633,15 +666,7 @@ int ehBissexto(int ano)
 	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
 }
 
-float calcularPercentual(int num, int total)
+float calcularPercentual(float num, float total)
 {
 	return (num * 100) / total;
-}
-
-void pularPrimeiraLinha(FILE *arq)
-{
-	while (fgetc(arq) != '\n')
-	{
-		// apenas para esquecer a primeira linha
-	}
 }
