@@ -57,7 +57,7 @@ char matrizMunicipios [78][35] =
 	"DOMINGOS MARTINS", "DORES DO RIO PRETO", "ECOPORANGA", "FUNDAO", "GOVERNADOR LINDENBERG", "GUACUI", "GUARAPARI", "IBATIBA", "IBIRACU",
 	"IBITIRAMA", "ICONHA", "IRUPI", "ITAGUACU", "ITAPEMIRIM", "ITARANA", "IUNA", "JAGUARE", "JERONIMO MONTEIRO", "JOAO NEIVA", "LARANJA DA TERRA",
 	"LINHARES", "MANTENOPOLIS", "MARATAIZES", "MARECHAL FLORIANO", "MARILANDIA", "MIMOSO DO SUL", "MONTANHA", "MUCURICI", "MUNIZ FREIRE", "MUQUI",
-	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PIUMA", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDIN",
+	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PIUMA", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDINA",
 	"SANTA MARIA DE JETIBA", "SANTA TERESA", "SAO DOMINGOS DO NORTE", "SAO GABRIEL DA PALHA", "SAO JOSE DO CALCADO", "SAO MATEUS", "SAO ROQUE DO CANAA",
 	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
 }; // matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
@@ -238,7 +238,7 @@ void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 
 	int i, todosCasos;
 
-	for (i = 0; i < 78; i++) // verificando cada municipio em ordem alfabetica
+	for (i = 0; i < 79; i++) // verificando cada municipio em ordem alfabetica (de 0 a 78)
 	{
 		todosCasos = totalDeCasosMun(matrizMunicipios[i]); // verificando se municipio de indice i possui casos confirmados e contando o total
 
@@ -364,7 +364,7 @@ void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 
 	for(int j = 0; j < topNcasos; j++)
 	{
-		fprintf(fitem5, "%s: %d casos\n", casosMuni[j].nomeMun, casosMuni[j].casosConfMun);
+		fprintf(fitem5, "- %s: %d casos\n", casosMuni[j].nomeMun, casosMuni[j].casosConfMun);
 	}
 
 	fclose(fitem5);
