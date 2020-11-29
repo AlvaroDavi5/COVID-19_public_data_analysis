@@ -1,12 +1,13 @@
 # Falta:
-	·corrigir bug ao listar cidades top n de mais casos em ordem decrescente (item 5)
-	·usar variaveis booleanas para comorbidades, ficou internado e classficacao [reativar funcao]
+-corrigir bug ao listar cidades top n de mais casos em ordem decrescente (item 5)
+
+-usar variaveis booleanas para comorbidades, ficou internado e classficacao [reativar funcao]
 
 Após isso:   
--deixar testes como input/output   
--atualizar esse README   
--atualizar pasta do trabalho no diretório "Programação"   
-	-incluir README.md, makefile.sh, input/output, data.csv e especificações.pdf   
+	·deixar testes como input/output   
+	·atualizar esse README   
+	·atualizar pasta do trabalho no diretório "Programação"   
+		·incluir README.md, makefile.sh, input/output, data.csv e especificações.pdf   
 ---------------------------------------------------------------------------------------------
 
 ✓O primeiro passo e ler o arquivo de entrada de dados contendo os casos de Covid-19 do Espirito Santo (covid19ES.csv) e armazena-lo em uma estrutura de dados.  

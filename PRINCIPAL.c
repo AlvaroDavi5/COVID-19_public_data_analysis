@@ -622,7 +622,7 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 		}
 		data1 = dataSeguinte(data1); // aumentar D1 ate coincidir com D2
 	}
-	desvpadr = sqrt((somaQuadDifIdadeM / (contIdades - 1))); // desvio padrao calculado
+	desvpadr = sqrt((somaQuadDifIdadeM / (contIdades - 1))); // desvio padrao calculado (o -1 e adcionado para excluir a ultima incremetacao, pois na computacao se comeca a contar a partir do 0)
 
 	return desvpadr;
 }
