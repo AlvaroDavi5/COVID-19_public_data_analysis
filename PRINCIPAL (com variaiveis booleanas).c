@@ -1,11 +1,21 @@
+/*
+
+Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
+
+	Alvaro Davi Santos Alves
+	Eng Comp, UFES, 2020.1
+
+*/
+
+// inclusao de bibliotecas para funcoes ja existentes
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <math.h>
+#include <ctype.h>
+#include <string.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 
 
 
@@ -649,7 +659,7 @@ void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 				{
 					mortes++; // contagem de mortes de pessoas com covid
 
-					// verificar se paciente nao tem nenhuma das 6 comorbidade
+					// verificar se paciente nao tem nenhuma das 6 comorbidades
 					if (! (strcmp(vetorPaciente[i].ComorbidadePulmao, "Sim") == 0))
 						if (! (strcmp(vetorPaciente[i].ComorbidadeCardio, "Sim") == 0))
 							if (! (strcmp(vetorPaciente[i].ComorbidadeRenal, "Sim") == 0))
@@ -668,7 +678,7 @@ void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 
 int quantidadeDiasMes(int mes, int ano)
 {
-	int diasMes = 0;
+	int diasMes = 0; // definir quantidade de dias de um mes
 
 	if (mes == 2)
 	{
@@ -695,10 +705,10 @@ int quantidadeDiasMes(int mes, int ano)
 
 int ehBissexto(int ano)
 {
-	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
+	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0)); // verifica se o ano (2020) e bissexto
 }
 
 float calcularPercentual(float num, float total)
 {
-	return (num * 100) / total;
+	return (num * 100) / total; // quantidade dividida pelo total e multiplicada por 100 corresponde ao percentual em relacao ao total
 }
