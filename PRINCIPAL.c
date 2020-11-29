@@ -49,7 +49,7 @@ typedef struct
 
 
 // variaveis de escopo global
-char matrizMunicipios [78][35] =
+char matrizMunicipios [79][35] =
 {
 	"AFONSO CLAUDIO", "AGUA DOCE DO NORTE", "AGUIA BRANCA", "ALEGRE", "ALFREDO CHAVES", "ALTO RIO NOVO", "ANCHIETA", "APIACA",
 	"ARACRUZ", "ATILIO VIVACQUA", "BAIXO GUANDU", "BARRA DE SAO FRANCISCO", "BOA ESPERANCA", "BOM JESUS DO NORTE", "BREJETUBA",
@@ -60,7 +60,7 @@ char matrizMunicipios [78][35] =
 	"NOVA VENECIA", "PANCAS", "PEDRO CANARIO", "PINHEIROS", "PIUMA", "PONTO BELO", "PRESIDENTE KENNEDY", "RIO BANANAL", "RIO NOVO DO SUL", "SANTA LEOPOLDINA",
 	"SANTA MARIA DE JETIBA", "SANTA TERESA", "SAO DOMINGOS DO NORTE", "SAO GABRIEL DA PALHA", "SAO JOSE DO CALCADO", "SAO MATEUS", "SAO ROQUE DO CANAA",
 	"SERRA", "SOORETAMA", "VARGEM ALTA", "VENDA NOVA DO IMIGRANTE", "VIANA", "VILA PAVAO", "VILA VALERIO", "VILA VELHA", "VITORIA"
-}; // matriz de municipios para comparacao, onde 78 e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
+}; // matriz de municipios para comparacao, onde 78 [+1 pra evitar conflitos na matriz] e a quantidade de municipios do ES e 35 o tamanho maximo das strings com os nomes
 
 tDadosPaciente vetorPaciente[TAMVETOR]; // definido vetor e tamanho do vetor, definido como global para evitar falha de segmentacao
 
@@ -352,9 +352,9 @@ void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 
 	fitem5 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
-	tMunicipiosECasos casosMuni[78];
+	tMunicipiosECasos casosMuni[79];
 
-	for (int i = 0; i < 78; i++) // verificando em toda a matriz dos municipios
+	for (int i = 0; i < 79; i++) // verificando em toda a matriz dos municipios
 	{
 		casosMuni[i].casosConfMun = contarCasosEntreD1eD2Muni(data1, data2, matrizMunicipios[i]); // contando casos confirmados entre D1 e D2 e informar municipio da posicao i
 		strcpy(casosMuni[i].nomeMun, matrizMunicipios[i]); // a funcao strcpy copia a string1 para onde se encontra a string2
@@ -398,13 +398,15 @@ int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 
 void ordenarDecresc(tMunicipiosECasos* casosMuni)
 {
+	// baseado no metodo bubblesort
+
 	char nomeMunicipio[35]; // variaveis temporarias
 	int numCasos;
 
 	// metodo de ordenacao para varrer todo o vetor e comparar quantidade de casos confirmados, ordenando do maior para o menor
-	for (int j = 0; j < 77; j++)
+	for (int j = 0; j < 78; j++)
 	{
-		for (int k = 0; k < 76-j; k++)
+		for (int k = 0; k < 77 - j; k++)
 		{
 			if(casosMuni[k].casosConfMun < casosMuni[k+1].casosConfMun)
 			{

@@ -1,6 +1,4 @@
 # Falta:   
-·corrigir bug ao listar cidades top n de mais casos em ordem decrescente (item 5)
-
 ·usar variaveis booleanas para comorbidades, ficou internado e classficacao [reativar funcao]
 
 ## Após isso:
