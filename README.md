@@ -3,7 +3,7 @@
 
 -usar variaveis booleanas para comorbidades, ficou internado e classficacao [reativar funcao]
 
-## Após isso:   
+## Após isso:
 	·deixar testes como input/output   
 	·atualizar esse README   
 	·atualizar pasta do trabalho no diretório "Programação"   
