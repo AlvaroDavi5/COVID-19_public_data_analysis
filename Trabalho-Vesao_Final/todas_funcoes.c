@@ -50,7 +50,6 @@ int contadorDeLinhas(FILE *arq)
 	return numLinhas - 2; // removidas primeira e ultima linhas
 }
 
-
 void lerArquivoCSV(FILE *arq)
 {
 	while (fgetc(arq) != '\n')
@@ -77,7 +76,6 @@ void lerArquivoCSV(FILE *arq)
 		fscanf(arq, "%[^\n]", vetorPaciente[i].FicouInternado); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
 	}
 }
-
 
 void lerEntrada()
 {
@@ -125,7 +123,6 @@ void lerEntrada()
 	Media_DesvP_idades_entreD1eD2(dir, confMortD1, confMortD2);
 }
 
-
 tData filtrarDatas()
 {
 	tData data;
@@ -135,7 +132,6 @@ tData filtrarDatas()
 	return data;
 }
 
-
 void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 {
 	char caminho[40];
@@ -143,7 +139,7 @@ void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 
 	// criar caminho para item3
 	strcpy(caminho, dir);
-	strcat(caminho, "item3.txt");
+	strcat(caminho, "item_3.txt");
 
 	fitem3 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -161,7 +157,6 @@ void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 
 	fclose(fitem3);
 }
-
 
 int totalDeCasosMun(char muni[])
 {
@@ -181,7 +176,6 @@ int totalDeCasosMun(char muni[])
 	return total;
 }
 
-
 void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 {
 	char caminho[40];
@@ -189,7 +183,7 @@ void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 
 	// criar caminho para item4
 	strcpy(caminho, dir);
-	strcat(caminho, "item4.txt");
+	strcat(caminho, "item_4.txt");
 
 	fitem4 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -215,7 +209,6 @@ void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 	fclose(fitem4);
 }
 
-
 int datasCoincidem(tData data1, tData data2)
 {
 	if ((data1.dia == data2.dia) && (data1.mes == data2.mes))
@@ -227,7 +220,6 @@ int datasCoincidem(tData data1, tData data2)
 		return FALSE;
 	}
 }
-
 
 tData dataSeguinte(tData data1)
 {
@@ -256,7 +248,6 @@ tData dataSeguinte(tData data1)
 	return data1;
 }
 
-
 void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 {
 	char caminho[40];
@@ -264,7 +255,7 @@ void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 
 	// criar caminho para item5
 	strcpy(caminho, dir);
-	strcat(caminho, "item5.txt");
+	strcat(caminho, "item_5.txt");
 
 	fitem5 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -285,7 +276,6 @@ void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 
 	fclose(fitem5);
 }
-
 
 int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 {
@@ -313,7 +303,6 @@ int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 	return qtdCasos;
 }
 
-
 void ordenarDecresc(tMunicipiosECasos* casosMuni)
 {
 	char nomeMunicipio[35]; // variaveis temporarias
@@ -337,7 +326,6 @@ void ordenarDecresc(tMunicipiosECasos* casosMuni)
 	}
 }
 
-
 void percentConfInter(char dir[], char muni[])
 {
 	char caminho[40];
@@ -345,7 +333,7 @@ void percentConfInter(char dir[], char muni[])
 
 	// criar caminho para item6
 	strcpy(caminho, dir);
-	strcat(caminho, "item6.txt");
+	strcat(caminho, "item_6.txt");
 
 	fitem6 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
 
@@ -391,7 +379,6 @@ void percentConfInter(char dir[], char muni[])
 	fclose(fitem6);
 }
 
-
 void percentMortes(FILE *fitem6, char muni[])
 {
 	tData dataNula;
@@ -434,7 +421,6 @@ void percentMortes(FILE *fitem6, char muni[])
 
 	fprintf(fitem6, "- A %% de pessoas com Covid-19 que morreram: %.3f%%\n", calcularPercentual(mortes, qtdCasosConf));
 }
-
 
 void percentInterMorte(FILE *fitem6, char muni[])
 {
@@ -479,7 +465,6 @@ void percentInterMorte(FILE *fitem6, char muni[])
 	fprintf(fitem6, "- A %% de pessoas que ficaram internadas e morreram: %.3f%%", calcularPercentual(interMortes, qtdMortes));
 }
 
-
 void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD2)
 {
 	char caminho[40];
@@ -487,7 +472,7 @@ void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD
 
 	// criar caminho para item7
 	strcpy(caminho, dir);
-	strcat(caminho, "item7.txt");
+	strcat(caminho, "item_7.txt");
 
 	fitem7 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
 
@@ -525,7 +510,6 @@ void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD
 	fclose(fitem7);
 }
 
-
 float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, float media)
 {
 	int i;
@@ -549,7 +533,6 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 
 	return desvpadr;
 }
-
 
 void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 {
@@ -588,7 +571,6 @@ void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 	fprintf(fitem7, "A %% de pessoas que morreram sem comorbidade: %.3f%%", calcularPercentual(mortesSemComorb, mortes));
 }
 
-
 int quantidadeDiasMes(int mes, int ano)
 {
 	int diasMes = 0;
@@ -616,12 +598,10 @@ int quantidadeDiasMes(int mes, int ano)
 	return diasMes;
 }
 
-
 int ehBissexto(int ano)
 {
 	return (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0));
 }
-
 
 float calcularPercentual(float num, float total)
 {
