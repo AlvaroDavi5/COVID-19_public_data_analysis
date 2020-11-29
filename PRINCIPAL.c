@@ -8,10 +8,12 @@
 #include <unistd.h>
 
 
+
 // definicao de constantes globais
 #define TAMVETOR 202362
 #define FALSE 0
 #define TRUE 1
+
 
 
 // definicao de tipos complexos
@@ -96,7 +98,7 @@ int main()
 {
 	FILE *arq; // ponteiro de arquivo, armazena o endereco das posicoes do arquivo
 
-	arq = fopen("./data/covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
+	arq = fopen("./covid19ES.csv", "r"); // abrir arquivo (endereco_arquivo, MODO_abertura-leitura), funcao passando por referência
 
 	//int tamVetor = contadorDeLinhas(arq); // definir dinamicamente tamanho do vetor baseado na quantidade de linhas do arquivo [deve ser usada apenas quando se for ler arquivos diferentes]
 
