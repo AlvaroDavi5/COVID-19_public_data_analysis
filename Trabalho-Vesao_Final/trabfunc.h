@@ -23,16 +23,16 @@
 	{
 		tData DataCadastro;
 		tData DataObito;
-		char Classificacao[15];
+		int Classificacao;
 		char Municipio[35];
 		int IdadeNaDataNotificacao;
-		char ComorbidadePulmao[5];
-		char ComorbidadeCardio[5];
-		char ComorbidadeRenal[5];
-		char ComorbidadeDiabetes[5];
-		char ComorbidadeTabagismo[5];
-		char ComorbidadeObesidade[5];
-		char FicouInternado[15];
+		int ComorbidadePulmao;
+		int ComorbidadeCardio;
+		int ComorbidadeRenal;
+		int ComorbidadeDiabetes;
+		int ComorbidadeTabagismo;
+		int ComorbidadeObesidade;
+		int FicouInternado;
 	} tDadosPaciente; // dados de cada linha/paciente
 
 	typedef struct
@@ -65,5 +65,7 @@
 	int quantidadeDiasMes(int mes, int ano);
 	int ehBissexto(int ano);
 	float calcularPercentual(float num, float total);
+	int lerSIMouNAO(char string[]);
+	int lerConf(char string[]);
 
 #endif

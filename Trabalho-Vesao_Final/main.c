@@ -1,11 +1,21 @@
+/*
+
+Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
+
+	Alvaro Davi Santos Alves
+	Eng Comp, UFES, 2020.1
+
+*/
+
+// inclusao de bibliotecas para funcoes ja existentes
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <math.h>
+#include <ctype.h>
+#include <string.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include "trabfunc.h"
 
 

@@ -1,6 +1,4 @@
 # Falta Otimizar:   
-·usar variaveis booleanas para comorbidades, ficou internado e classficacao [reativar funcao]
-
 ·usar metodo quicksort para ordenação [por nomes e por casos]
 
 ## Após isso:

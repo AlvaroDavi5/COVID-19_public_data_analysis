@@ -38,16 +38,16 @@ typedef struct
 {
 	tData DataCadastro;
 	tData DataObito;
-	char Classificacao[15];
+	int Classificacao;
 	char Municipio[35];
 	int IdadeNaDataNotificacao;
-	char ComorbidadePulmao[5];
-	char ComorbidadeCardio[5];
-	char ComorbidadeRenal[5];
-	char ComorbidadeDiabetes[5];
-	char ComorbidadeTabagismo[5];
-	char ComorbidadeObesidade[5];
-	char FicouInternado[15];
+	int ComorbidadePulmao;
+	int ComorbidadeCardio;
+	int ComorbidadeRenal;
+	int ComorbidadeDiabetes;
+	int ComorbidadeTabagismo;
+	int ComorbidadeObesidade;
+	int FicouInternado;
 } tDadosPaciente; // dados de cada linha/paciente
 
 typedef struct
@@ -98,6 +98,8 @@ void mortesSemComorb(FILE *fitem7, tData confMortD1, tData confMortD2);
 int quantidadeDiasMes(int mes, int ano);
 int ehBissexto(int ano);
 float calcularPercentual(float num, float total);
+int lerSIMouNAO(char string[]);
+int lerConf(char string[]);
 
 
 // ---------------------------------------------------------------------------------------------
@@ -155,6 +157,8 @@ int contadorDeLinhas(FILE *arq)
 
 void lerArquivoCSV(FILE *arq)
 {
+	char classif[15], intern[15], comorbPul[5], comorbCard[5], comorbRen[5], comorbDiab[5], comorbTaba[5], comorbObes[5];
+
 	while (fgetc(arq) != '\n')
 	{
 		// ignora os primeiros caracteres ate o \n, ou seja, ate o fim da primeira linha, apenas para esquecer a primeira linha
@@ -170,13 +174,33 @@ void lerArquivoCSV(FILE *arq)
 		// data de obito
 		fscanf(arq, "%d-%d-%d,", &vetorPaciente[i].DataObito.ano, &vetorPaciente[i].DataObito.mes, &vetorPaciente[i].DataObito.dia);
 		// classificacao e municipio
-		fscanf(arq, "%[^,],%[^,],", vetorPaciente[i].Classificacao, vetorPaciente[i].Municipio);
+		fscanf(arq, "%[^,],%[^,],", classif, vetorPaciente[i].Municipio);
 		// idade do paciente
 		fscanf(arq, "%*c%d %*[^\"]%*c,", &vetorPaciente[i].IdadeNaDataNotificacao); // usado operador %*c para descartar as informacoes alem da idade em anos
 		// comorbidades
-		fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],", vetorPaciente[i].ComorbidadePulmao, vetorPaciente[i].ComorbidadeCardio, vetorPaciente[i].ComorbidadeRenal, vetorPaciente[i].ComorbidadeDiabetes, vetorPaciente[i].ComorbidadeTabagismo, vetorPaciente[i].ComorbidadeObesidade);
+		fscanf(arq, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],", comorbPul, comorbCard, comorbRen, comorbDiab, comorbTaba, comorbObes);
 		// ficou internado
-		fscanf(arq, "%[^\n]", vetorPaciente[i].FicouInternado); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
+		fscanf(arq, "%[^\n]", intern); // o operador %[^,] le os dados como string e para (por isso o ^) ao encontrar ','
+
+		// atribuindo vaalores booleanos
+		vetorPaciente[i].Classificacao = lerConf(classif);
+		vetorPaciente[i].FicouInternado = lerSIMouNAO(intern);
+		vetorPaciente[i].ComorbidadePulmao = lerSIMouNAO(comorbPul);
+		vetorPaciente[i].ComorbidadeCardio = lerSIMouNAO(comorbCard);
+		vetorPaciente[i].ComorbidadeRenal = lerSIMouNAO(comorbRen);
+		vetorPaciente[i].ComorbidadeDiabetes = lerSIMouNAO(comorbDiab);
+		vetorPaciente[i].ComorbidadeTabagismo = lerSIMouNAO(comorbTaba);
+		vetorPaciente[i].ComorbidadeObesidade = lerSIMouNAO(comorbObes);
+
+		// zerando strings
+		classif[0] = '\0';
+		intern[0] = '\0';
+		comorbPul[0] = '\0';
+		comorbCard[0] = '\0';
+		comorbRen[0] = '\0';
+		comorbDiab[0] = '\0';
+		comorbTaba[0] = '\0';
+		comorbObes[0] = '\0';
 	}
 }
 
@@ -269,7 +293,7 @@ int totalDeCasosMun(char muni[])
 	{
 		if (strcmp(muni, vetorPaciente[i].Municipio) == 0) // funcao strcmp compara strings e retorna: 0 se as strings forem identicas, valor > 0 se a string1 e maior que a string2 e valor < 0 se strng1 e menos que string2
 		{
-			if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // comparando para contar apenas casos de covid confirmados (se nao houver diferenca retorna 0)
+			if (vetorPaciente[i].Classificacao) // contar apenas casos de covid confirmados (se nao houver diferenca retorna 0)
 			{
 				total++;
 			}
@@ -298,7 +322,7 @@ void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 		{
 			if (datasCoincidem(vetorPaciente[i].DataCadastro, casosD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
 			{
-				if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // se a classificacao do paciente for confirmada para o covid...
+				if (vetorPaciente[i].Classificacao) // se a classificacao do paciente for confirmada para o covid...
 				{
 					casosTotal++;
 				}
@@ -393,7 +417,7 @@ int contarCasosEntreD1eD2Muni(tData data1, tData data2, char muni[])
 			{
 				if (strcmp(vetorPaciente[i].Municipio, muni) == 0) // compara municipio do paciene no vetor ao municipio informado
 				{
-					if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // se a classificacao do paciente for confirmada para o covid...
+					if (vetorPaciente[i].Classificacao) // se a classificacao do paciente for confirmada para o covid...
 					{
 						qtdCasos++;
 					}
@@ -448,11 +472,11 @@ void percentConfInter(char dir[], char muni[])
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
-			if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // contando todos os casos confirmados
+			if (vetorPaciente[i].Classificacao) // contando todos os casos confirmados
 			{
 				qtdCasosConf++;
 
-				if ((strcmp(vetorPaciente[i].FicouInternado, "Sim") == 0)) // contando todos os casos confirmados com internacao
+				if (vetorPaciente[i].FicouInternado) // contando todos os casos confirmados com internacao
 				{
 					internConf++;
 				}
@@ -464,11 +488,11 @@ void percentConfInter(char dir[], char muni[])
 		for (i = 0; i < TAMVETOR; i++)
 		{
 
-			if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando os casos confirmados de um dado municipio
+			if ((vetorPaciente[i].Classificacao) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando os casos confirmados de um dado municipio
 			{
 				qtdCasosConf++;
 
-				if (strcmp(vetorPaciente[i].FicouInternado, "Sim") == 0)  // contando os casos confirmados com internacao de um dado municipio
+				if (vetorPaciente[i].FicouInternado)  // contando os casos confirmados com internacao de um dado municipio
 				{
 					internConf++;
 				}
@@ -497,7 +521,7 @@ void percentMortes(FILE *fitem6, char muni[])
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
-			if (strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) // contando todos os casos confirmados
+			if (vetorPaciente[i].Classificacao) // contando todos os casos confirmados
 			{
 				qtdCasosConf++;
 
@@ -512,7 +536,7 @@ void percentMortes(FILE *fitem6, char muni[])
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
-			if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando todos os casos confirmados de um dado municipio
+			if ((vetorPaciente[i].Classificacao) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando todos os casos confirmados de um dado municipio
 			{
 				qtdCasosConf++;
 
@@ -540,11 +564,11 @@ void percentInterMorte(FILE *fitem6, char muni[])
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
-			if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(dataNula, vetorPaciente[i].DataObito))) // contando todos os casos confirmados com morte
+			if ((vetorPaciente[i].Classificacao) && (! datasCoincidem(dataNula, vetorPaciente[i].DataObito))) // contando todos os casos confirmados com morte
 			{
 				qtdMortes++;
 
-				if ((strcmp(vetorPaciente[i].FicouInternado, "Sim") == 0)) // contando todos os casos confirmados com morte e intenacao
+				if (vetorPaciente[i].FicouInternado) // contando todos os casos confirmados com morte e intenacao
 				{
 					interMortes++;
 				}
@@ -555,11 +579,11 @@ void percentInterMorte(FILE *fitem6, char muni[])
 	{
 		for (i = 0; i < TAMVETOR; i++)
 		{
-			if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(dataNula, vetorPaciente[i].DataObito)) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando todos os casos confirmados com morte de um dado municipio
+			if ((vetorPaciente[i].Classificacao) && (! datasCoincidem(dataNula, vetorPaciente[i].DataObito)) && (strcmp(vetorPaciente[i].Municipio, muni) == 0)) // contando todos os casos confirmados com morte de um dado municipio
 			{
 				qtdMortes++;
 
-				if ((strcmp(vetorPaciente[i].FicouInternado, "Sim") == 0)) // contando todos os casos confirmados com morte e intenacao do municipio
+				if (vetorPaciente[i].FicouInternado) // contando todos os casos confirmados com morte e intenacao do municipio
 				{
 					interMortes++;
 				}
@@ -595,7 +619,7 @@ void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD
 		{
 			if (datasCoincidem(vetorPaciente[i].DataCadastro, confMortD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
 			{
-				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
+				if ((vetorPaciente[i].Classificacao) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
 					somaIdades += vetorPaciente[i].IdadeNaDataNotificacao; // somatorio de idades
 					contIdades++; // contagem de idades dos pacientes mortos que tinham covid
@@ -626,7 +650,7 @@ float desvioPadrao(tData data1, tData data2, tData dataNula, float contIdades, f
 		{
 			if (datasCoincidem(vetorPaciente[i].DataCadastro, data1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
 			{
-				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
+				if ((vetorPaciente[i].Classificacao) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
 					somaQuadDifIdadeM += pow((vetorPaciente[i].IdadeNaDataNotificacao - media), 2); // somatorio do quadrado das diferencas entre idades e media
 				}
@@ -655,17 +679,17 @@ void mortesSemComorb(FILE *fitem7, tData dataMD1, tData dataMD2)
 		{
 			if (datasCoincidem(vetorPaciente[i].DataCadastro, dataMD1)) // se a data de cadastro coincidir com a D1 que esta sofrendo mudancas no laco... 
 			{
-				if ((strcmp(vetorPaciente[i].Classificacao, "Confirmados") == 0) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
+				if ((vetorPaciente[i].Classificacao) && (! datasCoincidem(vetorPaciente[i].DataObito, dataNula))) // se  a pessoa teve covid e veio a obito
 				{
 					mortes++; // contagem de mortes de pessoas com covid
 
 					// verificar se paciente nao tem nenhuma das 6 comorbidades
-					if (! (strcmp(vetorPaciente[i].ComorbidadePulmao, "Sim") == 0))
-						if (! (strcmp(vetorPaciente[i].ComorbidadeCardio, "Sim") == 0))
-							if (! (strcmp(vetorPaciente[i].ComorbidadeRenal, "Sim") == 0))
-								if (! (strcmp(vetorPaciente[i].ComorbidadeDiabetes, "Sim") == 0))
-									if (! (strcmp(vetorPaciente[i].ComorbidadeTabagismo, "Sim") == 0))
-										if (! (strcmp(vetorPaciente[i].ComorbidadeObesidade, "Sim") == 0))
+					if (! vetorPaciente[i].ComorbidadePulmao)
+						if (! vetorPaciente[i].ComorbidadeCardio)
+							if (! vetorPaciente[i].ComorbidadeRenal)
+								if (! vetorPaciente[i].ComorbidadeDiabetes)
+									if (! vetorPaciente[i].ComorbidadeTabagismo)
+										if (! vetorPaciente[i].ComorbidadeObesidade)
 												mortesSemComorb++;
 				}
 			}
@@ -711,4 +735,20 @@ int ehBissexto(int ano)
 float calcularPercentual(float num, float total)
 {
 	return (num * 100) / total; // quantidade dividida pelo total e multiplicada por 100 corresponde ao percentual em relacao ao total
+}
+
+int lerSIMouNAO(char string[])
+{
+	if (strcmp(string, "Sim") == 0)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+int lerConf(char string[])
+{
+	if (strcmp(string, "Confirmados") == 0) // comparando para contar apenas casos de covid confirmados (se nao houver diferenca retorna 0)
+		return TRUE;
+	else
+		return FALSE;
 }
