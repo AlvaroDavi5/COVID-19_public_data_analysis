@@ -1,11 +1,6 @@
-# Falta Otimizar:   
+## Pode ser otimizado:   
 ·usar metodo quicksort para ordenação [por nomes e por casos]
 
-## Após isso:
-	-deixar testes como input/output   
-	-atualizar esse README   
-	-atualizar pasta do trabalho no diretório "Programação"   
-		-incluir README.md, makefile.sh, input/output, data.csv e especificações.pdf   
 ---------------------------------------------------------------------------------------------
 
 ✓O primeiro passo e ler o arquivo de entrada de dados contendo os casos de Covid-19 do Espirito Santo (covid19ES.csv) e armazena-lo em uma estrutura de dados.  
