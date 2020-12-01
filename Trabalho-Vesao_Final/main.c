@@ -1,22 +1,35 @@
 /*
+	Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
 
-Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
+ DUPLA:
+ - Alvaro Davi Santos Alves (2020101874)
+ - Fode Antonio Sambu (2018104712)
 
-	Alvaro Davi Santos Alves
-	Eng Comp, UFES, 2020.1
+ DISCIPLINA: Prog. II
+ PROF: Maria C. Boeres
+
+ CURSO: Engenharia da Computacao, sem: 2020.1
+ Universidade Federal do Espirito Santo (UFES)
 
 */
 
 // inclusao de bibliotecas para funcoes ja existentes
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <ctype.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include "trabfunc.h"
+#include <stdio.h> // Standart Input-Output, biblioteca padrao de entradas e saidas, para funcoes como scanf e printf
+#include <stdlib.h> // Standart Library, para alocacao de memoria, conversoes de tipos e outras funcionalidades
+#include <math.h> // para operacoes e funcoes matematicas
+#include <ctype.h> // para manipulacoes de caracteres
+#include <string.h> // para trabalhar com strings
+
+// detectar se o SO foi definido como sendo baseado em Unix
+#ifdef __unix__
+	#include <unistd.h> // para comandos e manipulacoes envolvendo SO's da familia UNIX (Linux, GNU, BSD...)
+// se nao e se o SO foi definido como sendo Windows
+#elif defined(_WIN32) || defined(WIN32)
+	#define OS_Windows // definir nome para o sistema, caso seja Windows
+	#include <windows.h> // para comandos e manipulacoes especificas do SO Windows
+#endif // fim do desvio condicional
+
+#include "trabfunc.h" // biblioteca local para funcoes criadas
 
 
 
