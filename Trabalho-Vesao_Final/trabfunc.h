@@ -44,7 +44,7 @@
 
 
 	// prototipos de funcoes
-	int contadorDeLinhas(FILE *arq); // fucnao criada para deixar o tamanho do arquivo .csv dinamico [DESATIVADA]
+	int contadorDeLinhas(FILE *arq); // funcao criada para deixar o tamanho do arquivo .csv dinamico [DESATIVADA]
 	void lerEntrada(); // funcao para ler a entrada do usuario
 	void lerArquivoCSV(FILE *arq); // funcao para ler o arquivo .csv e registrar informacoes no vetor dos pacientes
 	tData filtrarDatas(); // funcao para ler entrada de datas ano-mes-dia e registrar em formato dia-mes-ano
