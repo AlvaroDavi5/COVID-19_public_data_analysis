@@ -1,16 +1,14 @@
 /*
+	Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
 
-     Leitura e registros de dados sobre os casos de infeccao pelo virus COVID-19 no Espirito Santo
-
- Dupla:
+ DUPLA:
  - Alvaro Davi Santos Alves (2020101874)
  - Fode Antonio Sambu (2018104712)
 
- Disciplina: Prog. II
- Prof: Maria C. Boeres
+ DISCIPLINA: Prog. II
+ PROF: Maria C. S. Boeres
 
- Curso: Engenharia da Computacao, sem: 2020.1
-
+ CURSO: Engenharia da Computacao, sem: 2020.1
  Universidade Federal do Espirito Santo (UFES)
 
 */

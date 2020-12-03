@@ -6,7 +6,7 @@
  - Fode Antonio Sambu (2018104712)
 
  DISCIPLINA: Prog. II
- PROF: Maria C. Boeres
+ PROF: Maria C. S. Boeres
 
  CURSO: Engenharia da Computacao, sem: 2020.1
  Universidade Federal do Espirito Santo (UFES)
