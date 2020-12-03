@@ -175,7 +175,7 @@ void cidadesMaisNCasosOrdemAlfab(char dir[], int Ncasos)
 
 	// criar caminho para item3
 	strcpy(caminho, dir);
-	strcat(caminho, "item_3.txt");
+	strcat(caminho, "item3.txt");
 
 	fitem3 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -219,7 +219,7 @@ void totalCasosEntreD1eD2(char dir[], tData casosD1, tData casosD2)
 
 	// criar caminho para item4
 	strcpy(caminho, dir);
-	strcat(caminho, "item_4.txt");
+	strcat(caminho, "item4.txt");
 
 	fitem4 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -291,7 +291,7 @@ void topNCidades(char dir[], int topNcasos, tData data1, tData data2)
 
 	// criar caminho para item5
 	strcpy(caminho, dir);
-	strcat(caminho, "item_5.txt");
+	strcat(caminho, "item5.txt");
 
 	fitem5 = fopen(caminho, "w+"); // modo escrita, cria um arquivo ou apaga existente
 
@@ -371,7 +371,7 @@ void percentConfInter(char dir[], char muni[])
 
 	// criar caminho para item6
 	strcpy(caminho, dir);
-	strcat(caminho, "item_6.txt");
+	strcat(caminho, "item6.txt");
 
 	fitem6 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
 
@@ -510,7 +510,7 @@ void Media_DesvP_idades_entreD1eD2(char dir[], tData confMortD1, tData confMortD
 
 	// criar caminho para item7
 	strcpy(caminho, dir);
-	strcat(caminho, "item_7.txt");
+	strcat(caminho, "item7.txt");
 
 	fitem7 = fopen(caminho, "a+"); // modo escrita (append), cria um arquivo ou apaga existente e escreve tudo no final do mesmo
 
