@@ -129,7 +129,7 @@ void lerEntrada()
 	topNCData1 = filtrarDatas();
 	topNCData2 = filtrarDatas();
 
-	scanf("%s\n", muni);
+	scanf(" %[^\n]", muni);
 	int tamStr = strlen(muni); // pegar tamanho da string
 	for (int k = 0; k < tamStr; k++)
 	{
