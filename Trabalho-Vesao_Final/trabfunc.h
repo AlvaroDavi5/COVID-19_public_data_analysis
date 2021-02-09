@@ -1,6 +1,6 @@
-#ifndef TRABFUNC_H // se o header (cabecalho) nao esta definido,
+#ifndef _H_TRABFUNC // se o header (cabecalho) nao esta definido,
 
-	#define TRABFUNC_H // definir header.
+	#define _H_TRABFUNC // definir header.
 
 
 
